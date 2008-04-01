@@ -345,7 +345,7 @@
 
 1196398776 /usr/include/wx-2.8/wx/gtk/app.h
 
-1206992313 /home/jeremy/c/bf ide/bf_ideMain.h
+1207013039 /home/jeremy/c/bf ide/bf_ideMain.h
 	<wx/stattext.h>
 	<wx/menu.h>
 	<wx/textctrl.h>
@@ -353,6 +353,7 @@
 	<wx/button.h>
 	<wx/frame.h>
 	<wx/statusbr.h>
+	<iostream>
 
 1196398775 /usr/include/wx-2.8/wx/stattext.h
 	"wx/defs.h"
@@ -781,7 +782,7 @@
 1196398776 /usr/include/wx-2.8/wx/imagiff.h
 	"wx/image.h"
 
-1206992315 source:/home/jeremy/c/bf ide/bf_ideMain.cpp
+1207014364 source:/home/jeremy/c/bf ide/bf_ideMain.cpp
 	"bf_ideMain.h"
 	<wx/msgdlg.h>
 	<wx/intl.h>
@@ -849,11 +850,12 @@
 	<wx/grid.h>
 	"bf_tableBase.h"
 
-1206772898 /home/jeremy/c/bf ide/bf_tableBase.h
+1207015208 /home/jeremy/c/bf ide/bf_tableBase.h
 	<wx/grid.h>
 	<algorithm>
+	<typeinfo>
 
-1206773146 source:/home/jeremy/c/bf ide/bf_tableBase.cpp
+1207013938 source:/home/jeremy/c/bf ide/bf_tableBase.cpp
 	"bf_tableBase.h"
 
 1196398774 /usr/include/wx-2.8/wx/button.h

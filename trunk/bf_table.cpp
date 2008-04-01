@@ -16,3 +16,12 @@ bf_table::bf_table(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wx
 bf_table::~bf_table() {
     //dtor
 }
+
+ bf_tableBase * bf_table::GetTable() {
+    return (bf_tableBase*)wxGrid::GetTable();
+}
+
+void bf_table::SetTable(wxGridTableBase * w,bool takeOwnership, wxGridSelectionModes s) {
+    assert(typeid(w)==typeid(bf_tableBase));
+    wxGrid::SetTable(w,takeOwnership,s);
+}

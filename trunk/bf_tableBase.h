@@ -3,6 +3,7 @@
 
 #include <wx/grid.h>
 #include <algorithm>
+#include <typeinfo>
 
 class bf_tableBase : public wxGridTableBase {
      unsigned char *data;
@@ -16,6 +17,7 @@ public:
     bool IsEmptyCell(int,int);
     wxString GetValue(int,int);
     void SetValue(int, int, const wxString&);
+    void resetValues();
 protected:
 private:
     bool bounds_check(int i);

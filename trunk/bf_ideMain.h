@@ -20,15 +20,17 @@
 #include <wx/statusbr.h>
 //*)
 
+#include <iostream>
 class bf_ideFrame: public wxFrame
 {
     public:
-
         bf_ideFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~bf_ideFrame();
-
     private:
-
+        const wxChar * program;
+        const wxChar * currentIndex;
+        void lockUpIDE();
+        void processStep();
         //(*Handlers(bf_ideFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
@@ -38,6 +40,11 @@ class bf_ideFrame: public wxFrame
         void OnClose(wxCloseEvent& event);
         void OnPauseButtonClick(wxCommandEvent& event);
         void OnCustom1Paint(wxPaintEvent& event);
+        void OnStopButtonClick(wxCommandEvent& event);
+        void OnStepIntoButtonClick(wxCommandEvent& event);
+        void OnStepOverButtonClick(wxCommandEvent& event);
+        void OnStartButtonClick(wxCommandEvent& event);
+        void OnProgramTextText(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(bf_ideFrame)
@@ -59,17 +66,18 @@ class bf_ideFrame: public wxFrame
 
         //(*Declarations(bf_ideFrame)
         wxGrid* ArrayData;
-        wxButton* Button4;
-        wxStaticText* StaticText2;
+        wxStaticText* InputLabel;
         wxButton* StartButton;
-        wxStaticText* StaticText1;
+        wxButton* StepIntoButton;
+        wxTextCtrl* InputBox;
         wxButton* PauseButton;
-        wxButton* Button3;
-        wxStatusBar* StatusBar1;
-        wxTextCtrl* TextCtrl2;
-        wxTextCtrl* TextCtrl1;
-        wxTextCtrl* TextCtrl3;
+        wxTextCtrl* OutputBox;
+        wxButton* StopButton;
+        wxStaticText* OutputLabel;
+        wxTextCtrl* ProgramText;
+        wxStatusBar* StatusBar;
         wxButton* StepOverButton;
+        wxMenuBar* MenuBar;
         //*)
 
         DECLARE_EVENT_TABLE()
