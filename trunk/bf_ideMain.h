@@ -30,7 +30,7 @@ class bf_ideFrame: public wxFrame
         bf_ideFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~bf_ideFrame();
     private:
-        stack<wxChar*> opening_braces;
+        stack<const wxChar*> opening_braces;
         bool running;
         int line_number;
         const wxChar * program;
@@ -41,8 +41,9 @@ class bf_ideFrame: public wxFrame
         void prep_running();
         void processStep();
         void show_current_ptr();
-        bool breakpoint();
+        bool breakpoint(int line_number);
         void set_running_mode(bool is_running);
+        void skip_to_corresponding_brace();
         //(*Handlers(bf_ideFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);

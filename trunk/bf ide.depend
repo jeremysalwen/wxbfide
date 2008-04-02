@@ -345,7 +345,7 @@
 
 1196398776 /usr/include/wx-2.8/wx/gtk/app.h
 
-1207094201 /home/jeremy/c/bf ide/bf_ideMain.h
+1207099224 /home/jeremy/c/bf ide/bf_ideMain.h
 	<wx/stattext.h>
 	<wx/menu.h>
 	<wx/textctrl.h>
@@ -355,6 +355,7 @@
 	<wx/statusbr.h>
 	<iostream>
 	"bf_table.h"
+	<stack>
 
 1196398775 /usr/include/wx-2.8/wx/stattext.h
 	"wx/defs.h"
@@ -783,7 +784,7 @@
 1196398776 /usr/include/wx-2.8/wx/imagiff.h
 	"wx/image.h"
 
-1207091373 source:/home/jeremy/c/bf ide/bf_ideMain.cpp
+1207100465 source:/home/jeremy/c/bf ide/bf_ideMain.cpp
 	"bf_ideMain.h"
 	<wx/msgdlg.h>
 	<wx/intl.h>
@@ -844,7 +845,7 @@
 1196398776 /usr/include/wx-2.8/wx/generic/listctrl.h
 	"wx/textctrl.h"
 
-1207091268 source:/home/jeremy/c/bf ide/bf_table.cpp
+1207099500 source:/home/jeremy/c/bf ide/bf_table.cpp
 	"bf_table.h"
 
 1207015020 /home/jeremy/c/bf ide/bf_table.h
