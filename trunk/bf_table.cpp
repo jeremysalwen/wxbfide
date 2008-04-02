@@ -1,7 +1,9 @@
 #include "bf_table.h"
 
 bf_table::bf_table(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name):wxGrid(parent,id,pos,size,style,name) {
-    this->SetEditable(false);
+    wxGridCellAttr *w=new wxGridCellAttr();  //memory leak?
+    w->SetReadOnly(true);
+    this->SetRowAttr(1,w);
     this->SetColumnWidth(1,10);
     this->SetRowLabelSize(0);
     this->SetColLabelSize(0);
@@ -17,11 +19,12 @@ bf_table::~bf_table() {
     //dtor
 }
 
- bf_tableBase * bf_table::GetTable() {
+bf_tableBase * bf_table::GetTable() {
     return (bf_tableBase*)wxGrid::GetTable();
 }
 
 void bf_table::SetTable(wxGridTableBase * w,bool takeOwnership, wxGridSelectionModes s) {
-    assert(typeid(w)==typeid(bf_tableBase));
-    wxGrid::SetTable(w,takeOwnership,s);
+    if (dynamic_cast<bf_tableBase*>(w)) {
+        wxGrid::SetTable(w,takeOwnership,s);
+    }
 }

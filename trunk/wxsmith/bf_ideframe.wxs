@@ -11,7 +11,7 @@
 			<style>wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB|wxTE_MULTILINE|wxTE_DONTWRAP</style>
 			<handler function="OnProgramTextText" entry="EVT_TEXT" />
 		</object>
-		<object class="wxGrid" name="ID_GRID1" variable="ArrayData" member="yes">
+		<object class="wxGrid" name="ID_GRID1" subclass="bf_table" variable="ArrayData" member="yes">
 			<cols>3000</cols>
 			<rows>2</rows>
 			<pos>240,8</pos>

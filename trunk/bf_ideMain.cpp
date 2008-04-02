@@ -17,25 +17,24 @@
 
 //helper functions
 enum wxbuildinfoformat {
-    short_f, long_f };
+    short_f, long_f
+};
 
-wxString wxbuildinfo(wxbuildinfoformat format)
-{
+wxString wxbuildinfo(wxbuildinfoformat format) {
     wxString wxbuild(wxVERSION_STRING);
 
-    if (format == long_f )
-    {
-#if defined(__WXMSW__)
+    if (format == long_f ) {
+        #if defined(__WXMSW__)
         wxbuild << _T("-Windows");
-#elif defined(__UNIX__)
+        #elif defined(__UNIX__)
         wxbuild << _T("-Linux");
-#endif
+        #endif
 
-#if wxUSE_UNICODE
+        #if wxUSE_UNICODE
         wxbuild << _T("-Unicode build");
-#else
+        #else
         wxbuild << _T("-ANSI build");
-#endif // wxUSE_UNICODE
+        #endif // wxUSE_UNICODE
     }
 
     return wxbuild;
@@ -63,8 +62,7 @@ BEGIN_EVENT_TABLE(bf_ideFrame,wxFrame)
     //*)
 END_EVENT_TABLE()
 
-bf_ideFrame::bf_ideFrame(wxWindow* parent,wxWindowID id)
-{
+bf_ideFrame::bf_ideFrame(wxWindow* parent,wxWindowID id) {
     //(*Initialize(bf_ideFrame)
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;
@@ -72,15 +70,19 @@ bf_ideFrame::bf_ideFrame(wxWindow* parent,wxWindowID id)
     wxMenu* Menu2;
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxDLG_UNIT(parent,wxSize(291,223)));
+    //SetClientSize(wxDLG_UNIT(parent,wxSize(291,223)));
     ProgramText = new wxTextCtrl(this, ID_TEXTCTRL1, _("Insert Program here."), wxPoint(8,8), wxDLG_UNIT(this,wxSize(148,196)), wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB|wxTE_MULTILINE|wxTE_DONTWRAP, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    ArrayData = new wxGrid(this, ID_GRID1, wxPoint(240,8), wxSize(192,72), 0, _T("ID_GRID1"));
+    ArrayData = new bf_table(this, ID_GRID1, wxPoint(240,8), wxSize(192,72), 0, _T("ID_GRID1"));
     ArrayData->CreateGrid(2,3000);
     StartButton = new wxButton(this, ID_BUTTON1, _("Start"), wxDLG_UNIT(this,wxPoint(0,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     PauseButton = new wxButton(this, ID_BUTTON2, _("Pause"), wxDLG_UNIT(this,wxPoint(58,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    PauseButton->Disable();
     StopButton = new wxButton(this, ID_BUTTON3, _("Stop"), wxDLG_UNIT(this,wxPoint(117,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    StopButton->Disable();
     StepIntoButton = new wxButton(this, ID_BUTTON4, _("Step Into"), wxPoint(264,328), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
+    StepIntoButton->Disable();
     StepOverButton = new wxButton(this, ID_BUTTON5, _("Step Over"), wxDLG_UNIT(this,wxPoint(234,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
+    StepOverButton->Disable();
     InputBox = new wxTextCtrl(this, ID_TEXTCTRL2, wxEmptyString, wxPoint(240,112), wxSize(192,88), wxTE_AUTO_SCROLL|wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB|wxTE_MULTILINE|wxHSCROLL, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     OutputBox = new wxTextCtrl(this, ID_TEXTCTRL3, wxEmptyString, wxPoint(240,224), wxSize(192,96), wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     OutputLabel = new wxStaticText(this, ID_STATICTEXT1, _("Output"), wxPoint(240,208), wxSize(80,16), 0, _T("ID_STATICTEXT1"));
@@ -114,61 +116,98 @@ bf_ideFrame::bf_ideFrame(wxWindow* parent,wxWindowID id)
     //*)
 }
 
-bf_ideFrame::~bf_ideFrame()
-{
+bf_ideFrame::~bf_ideFrame() {
     //(*Destroy(bf_ideFrame)
     //*)
 }
 
-void bf_ideFrame::OnQuit(wxCommandEvent& event)
-{
+void bf_ideFrame::OnQuit(wxCommandEvent& event) {
     Close();
 }
 
-void bf_ideFrame::OnAbout(wxCommandEvent& event)
-{
+void bf_ideFrame::OnAbout(wxCommandEvent& event) {
     wxString msg = wxbuildinfo(long_f);
     wxMessageBox(msg, _("Welcome to..."));
 }
 
-void bf_ideFrame::OnClose(wxCloseEvent& event)
-{
+void bf_ideFrame::OnClose(wxCloseEvent& event) {
 }
 
-void bf_ideFrame::OnPauseButtonClick(wxCommandEvent& event)
-{
+void bf_ideFrame::OnPauseButtonClick(wxCommandEvent& event) {
 }
 
 
-void bf_ideFrame::OnStopButtonClick(wxCommandEvent& event)
-{
+void bf_ideFrame::OnStopButtonClick(wxCommandEvent& event) {
+    ProgramText->SetEditable(true);
+    delete input_stream;
+    delete output_stream;
 }
 
-void bf_ideFrame::OnStepIntoButtonClick(wxCommandEvent& event)
-{
+void bf_ideFrame::OnStepIntoButtonClick(wxCommandEvent& event) {
 }
 
-void bf_ideFrame::OnStepOverButtonClick(wxCommandEvent& event)
-{
+void bf_ideFrame::OnStepOverButtonClick(wxCommandEvent& event) {
 }
 
-void bf_ideFrame::OnStartButtonClick(wxCommandEvent& event)
-{
-   std::ostream stream(this->OutputBox);
-
-   std::istream instream(this->InputBox);
-   std::string tmp;
-   instream>>tmp;
-   stream<<tmp;
-}
-
-void bf_ideFrame::OnProgramTextText(wxCommandEvent& event)
-{
-}
-
-void bf_ideFrame::lockUpIDE() {
-    program=ProgramText->GetValue().c_str();
-    currentIndex=program;
-    ProgramText->SetEditable(false);
-    ArrayData->GetTable();
+void bf_ideFrame::OnStartButtonClick(wxCommandEvent& event) {
+    prep_running();
+    while(!breakpoint()) {
+        processStep();
     }
+}
+
+void bf_ideFrame::OnProgramTextText(wxCommandEvent& event) {
+}
+
+void bf_ideFrame::prep_running() {
+    running=true;
+    line_number=1;
+    program=ProgramText->GetValue().c_str();
+    program_index=program;
+    ArrayData->GetTable()->reset_values();
+    input_stream=new istream(InputBox);
+    output_stream=new ostream(OutputBox);
+    set_running_mode(true);
+}
+
+void bf_ideFrame::set_running_mode(bool is_running) {
+    StartButton->Enable(!is_running);
+    PauseButton->Enable(is_running);
+    StopButton->Enable(is_running);
+    StepIntoButton->Enable(is_running);
+    StepOverButton->Enable(is_running);
+    ProgramText->SetEditable(!is_running);
+}
+void bf_ideFrame::show_current_ptr() {
+    ArrayData->MakeCellVisible(1,bf_ptr);
+}
+
+void bf_ideFrame::processStep() {
+    char c=*program_index;
+    bf_tableBase *b=ArrayData->GetTable();
+    switch(c) {
+        case '+':
+            b->inc_cell(bf_ptr);
+            break;
+        case '-':
+            b->dec_cell(bf_ptr);
+            break;
+        case '>':
+            bf_ptr++;
+            break;
+        case '<':
+            bf_ptr--;
+            break;
+        case ',':
+            b->set_cell(bf_ptr,input_stream.getc());
+            break;
+        case '.':
+            output_stream << b->get_cell(bf_ptr);
+            break;
+        case '
+    }
+}
+
+bool bf_ideFrame::breakpoint() {
+    return false;  //temporary fix
+}

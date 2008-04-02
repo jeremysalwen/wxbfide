@@ -3,7 +3,7 @@
 
 bf_tableBase::bf_tableBase() {
     data=new unsigned char[30000];
-    resetValues();
+    reset_values();
 }
 
 bf_tableBase::~bf_tableBase() {
@@ -40,16 +40,29 @@ wxString bf_tableBase::GetValue(int row ,int col) {
 }
 
 void bf_tableBase::SetValue(int row, int col, const wxString& value) {
+
 }
+
 void bf_tableBase::set_data(int index,unsigned char value) {
     this->data[index]=value;
 }
-void bf_tableBase::resetValues() {
+void bf_tableBase::reset_values() {
     std::fill_n(data,30000,0);
 }
 
-unsigned char bf_tableBase::get_data(int index) {
-    return (this->data[index]);
+void bf_tableBase::inc_cell(int cell) {
+    data[cell]++;
+}
+void bf_tableBase::dec_cell(int cell) {
+    data[cell]--;
+}
+
+unsigned char bf_tableBase::get_cell(int cell) {
+    return data[cell];
+}
+
+void bf_tableBase::set_cell(int cell, unsigned char value) {
+    data[cell]=value;
 }
 
 inline bool bf_tableBase::bounds_check(int i) {

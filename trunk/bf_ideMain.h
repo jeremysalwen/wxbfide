@@ -21,16 +21,28 @@
 //*)
 
 #include <iostream>
+#include "bf_table.h"
+#include <stack>
+using namespace std;
 class bf_ideFrame: public wxFrame
 {
     public:
         bf_ideFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~bf_ideFrame();
     private:
+        stack<wxChar*> opening_braces;
+        bool running;
+        int line_number;
         const wxChar * program;
-        const wxChar * currentIndex;
-        void lockUpIDE();
+        const wxChar * program_index;
+        istream *input_stream;
+        ostream *output_stream;
+        int bf_ptr;
+        void prep_running();
         void processStep();
+        void show_current_ptr();
+        bool breakpoint();
+        void set_running_mode(bool is_running);
         //(*Handlers(bf_ideFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
@@ -65,7 +77,6 @@ class bf_ideFrame: public wxFrame
         //*)
 
         //(*Declarations(bf_ideFrame)
-        wxGrid* ArrayData;
         wxStaticText* InputLabel;
         wxButton* StartButton;
         wxButton* StepIntoButton;
@@ -73,6 +84,7 @@ class bf_ideFrame: public wxFrame
         wxButton* PauseButton;
         wxTextCtrl* OutputBox;
         wxButton* StopButton;
+        bf_table* ArrayData;
         wxStaticText* OutputLabel;
         wxTextCtrl* ProgramText;
         wxStatusBar* StatusBar;
