@@ -70,19 +70,23 @@ bf_ideFrame::bf_ideFrame(wxWindow* parent,wxWindowID id) {
     wxMenu* Menu2;
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxDLG_UNIT(parent,wxSize(291,223)));
+    SetClientSize(wxDLG_UNIT(parent,wxSize(292,222)));
     ProgramText = new wxTextCtrl(this, ID_TEXTCTRL1, _("Insert Program here."), wxPoint(8,8), wxDLG_UNIT(this,wxSize(148,196)), wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB|wxTE_MULTILINE|wxTE_DONTWRAP, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    ArrayData = new bf_table(this, ID_GRID1, wxPoint(240,8), wxSize(192,72), 0, _T("ID_GRID1"));
+    ArrayData = new bf_table(this, ID_GRID1, wxPoint(320,8), wxSize(256,112), 0, _T("ID_GRID1"));
     ArrayData->CreateGrid(2,3000);
     StartButton = new wxButton(this, ID_BUTTON1, _("Start"), wxDLG_UNIT(this,wxPoint(0,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     PauseButton = new wxButton(this, ID_BUTTON2, _("Pause"), wxDLG_UNIT(this,wxPoint(58,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    PauseButton->Disable();
     StopButton = new wxButton(this, ID_BUTTON3, _("Stop"), wxDLG_UNIT(this,wxPoint(117,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
-    StepIntoButton = new wxButton(this, ID_BUTTON4, _("Step Into"), wxPoint(264,328), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
+    StopButton->Disable();
+    StepIntoButton = new wxButton(this, ID_BUTTON4, _("Step Into"), wxPoint(352,432), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
+    StepIntoButton->Disable();
     StepOverButton = new wxButton(this, ID_BUTTON5, _("Step Over"), wxDLG_UNIT(this,wxPoint(234,202)), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
-    InputBox = new wxTextCtrl(this, ID_TEXTCTRL2, wxEmptyString, wxPoint(240,112), wxSize(192,88), wxTE_AUTO_SCROLL|wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB|wxTE_MULTILINE|wxHSCROLL, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    OutputBox = new wxTextCtrl(this, ID_TEXTCTRL3, wxEmptyString, wxPoint(240,224), wxSize(192,96), wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL3"));
-    OutputLabel = new wxStaticText(this, ID_STATICTEXT1, _("Output"), wxPoint(240,208), wxSize(80,16), 0, _T("ID_STATICTEXT1"));
-    InputLabel = new wxStaticText(this, ID_STATICTEXT2, _("Input"), wxPoint(240,88), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    StepOverButton->Disable();
+    InputBox = new wxTextCtrl(this, ID_TEXTCTRL2, wxEmptyString, wxPoint(320,144), wxSize(256,120), wxTE_AUTO_SCROLL|wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB|wxTE_MULTILINE|wxHSCROLL, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    OutputBox = new wxTextCtrl(this, ID_TEXTCTRL3, wxEmptyString, wxPoint(320,280), wxSize(256,136), wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    OutputLabel = new wxStaticText(this, ID_STATICTEXT1, _("Output"), wxPoint(328,264), wxSize(80,16), 0, _T("ID_STATICTEXT1"));
+    InputLabel = new wxStaticText(this, ID_STATICTEXT2, _("Input"), wxPoint(328,120), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     MenuBar = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
@@ -135,8 +139,6 @@ void bf_ideFrame::OnPauseButtonClick(wxCommandEvent& event) {
 
 void bf_ideFrame::OnStopButtonClick(wxCommandEvent& event) {
     ProgramText->SetEditable(true);
-    delete input_stream;
-    delete output_stream;
 }
 
 void bf_ideFrame::OnStepIntoButtonClick(wxCommandEvent& event) {
@@ -148,12 +150,7 @@ void bf_ideFrame::OnStepOverButtonClick(wxCommandEvent& event) {
 void bf_ideFrame::OnStartButtonClick(wxCommandEvent& event) {
     prep_running();
     return;
-    while (!breakpoint(line_number)  && *program_index!=0) {
-        processStep();
-        if(*program_index=='\n') {
-            line_number++;
-        }
-    }
+
 }
 
 void bf_ideFrame::OnProgramTextText(wxCommandEvent& event) {
@@ -161,14 +158,7 @@ void bf_ideFrame::OnProgramTextText(wxCommandEvent& event) {
 
 void bf_ideFrame::prep_running() {
     running=true;
-    line_number=1;
-    program=ProgramText->GetValue().c_str();
-    *output_stream<<ProgramText->GetValue();
-    return;
-    program_index=program;
     ArrayData->GetTable()->reset_values();
-    input_stream=new istream(InputBox);
-    output_stream=new ostream(OutputBox);
     set_running_mode(true);
 }
 
@@ -180,59 +170,11 @@ void bf_ideFrame::set_running_mode(bool is_running) {
     StepOverButton->Enable(is_running);
     ProgramText->SetEditable(!is_running);
 }
-void bf_ideFrame::show_current_ptr() {
-    ArrayData->MakeCellVisible(1,bf_ptr);
+
+void bf_ideFrame::cleanup() {
+
 }
 
-void bf_ideFrame::processStep() {
-    char c=*program_index;
-    bf_tableBase *b=ArrayData->GetTable();
-    switch (c) {
-    case '+':
-        b->inc_cell(bf_ptr);
-        break;
-    case '-':
-        b->dec_cell(bf_ptr);
-        break;
-    case '>':
-        bf_ptr++;
-        break;
-    case '<':
-        bf_ptr--;
-        break;
-    case ',':
-        b->set_cell(bf_ptr,input_stream->get());
-        break;
-    case '.':
-        *output_stream << b->get_cell(bf_ptr);
-        break;
-    case '[':
-        if (b->get_cell(bf_ptr)) {
-            opening_braces.push(program_index);
-        } else {
-            skip_to_corresponding_brace();
-        }
-        break;
-    case ']':
-        if(b->get_cell(bf_ptr)) {
-            program_index=opening_braces.top();
-        }
-        opening_braces.pop();
-        break;
-    }
-}
-
-void bf_ideFrame::skip_to_corresponding_brace() { //assumes program_index points to a '[' finishes pointing to the char after ']'
-    unsigned int num_braces=0;
-    do {
-        if (*program_index=='[') {
-            num_braces++;
-        } else if (*program_index==']') {
-            num_braces--;
-        }
-        program_index++;
-    } while (num_braces!=0);
-}
 
 bool bf_ideFrame::breakpoint(int line_number) {
     return false;  //temporary fix

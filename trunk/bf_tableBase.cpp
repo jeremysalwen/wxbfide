@@ -17,7 +17,7 @@ int bf_tableBase::GetNumberCols() {
     return 30000;
 }
 bool bf_tableBase::IsEmptyCell(int row,int col) {
-    if(!bounds_check(col)) {
+    if (!bounds_check(col)) {
         return false;
     }
     return data[col]!=0;
@@ -43,28 +43,38 @@ void bf_tableBase::SetValue(int row, int col, const wxString& value) {
 
 }
 
-void bf_tableBase::set_data(int index,unsigned char value) {
-    this->data[index]=value;
+inline bool bf_tableBase::bounds_check(int i) {
+    return (i>=0 && i<30000);
 }
+
 void bf_tableBase::reset_values() {
     std::fill_n(data,30000,0);
 }
 
-void bf_tableBase::inc_cell(int cell) {
-    data[cell]++;
+void bf_tableBase::inc_cell() {
+    data[bf_ptr]++;
 }
-void bf_tableBase::dec_cell(int cell) {
-    data[cell]--;
-}
-
-unsigned char bf_tableBase::get_cell(int cell) {
-    return data[cell];
+void bf_tableBase::dec_cell() {
+    data[bf_ptr]--;
 }
 
-void bf_tableBase::set_cell(int cell, unsigned char value) {
-    data[cell]=value;
+unsigned char bf_tableBase::get_cell() {
+    return data[bf_ptr];
 }
 
-inline bool bf_tableBase::bounds_check(int i) {
-    return (i>=0 && i<30000);
+void bf_tableBase::set_cell(unsigned char value) {
+    data[bf_ptr]=value;
+}
+void bf_tableBase::inc_ptr() {
+    bf_ptr++;
+}
+void bf_tableBase::dec_ptr() {
+    bf_ptr--;
+}
+
+unsigned int bf_tableBase::get_ptr() {
+    return bf_ptr;
+}
+void bf_tableBase::set_ptr(unsigned int i) {
+    bf_ptr=i;
 }

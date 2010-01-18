@@ -10,6 +10,8 @@
 #ifndef BF_IDEMAIN_H
 #define BF_IDEMAIN_H
 
+class bf_ideFrame;
+
 //(*Headers(bf_ideFrame)
 #include <wx/stattext.h>
 #include <wx/menu.h>
@@ -19,31 +21,26 @@
 #include <wx/frame.h>
 #include <wx/statusbr.h>
 //*)
-
-#include <iostream>
+#include "bf_interpreter_thread.h"
 #include "bf_table.h"
-#include <stack>
+#include <wx/log.h>
+
 using namespace std;
 class bf_ideFrame: public wxFrame
 {
     public:
         bf_ideFrame(wxWindow* parent,wxWindowID id = -1);
+        void prep_running();
         virtual ~bf_ideFrame();
     private:
-        stack<const wxChar*> opening_braces;
         bool running;
         int line_number;
-        const wxChar * program;
-        const wxChar * program_index;
-        istream *input_stream;
-        ostream *output_stream;
-        int bf_ptr;
-        void prep_running();
+        bf_interpreter_thread * thread;
         void processStep();
         void show_current_ptr();
         bool breakpoint(int line_number);
         void set_running_mode(bool is_running);
-        void skip_to_corresponding_brace();
+        void cleanup();
         //(*Handlers(bf_ideFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
@@ -76,7 +73,7 @@ class bf_ideFrame: public wxFrame
         static const long idMenuAbout;
         static const long ID_STATUSBAR1;
         //*)
-
+public:
         //(*Declarations(bf_ideFrame)
         wxStaticText* InputLabel;
         wxButton* StartButton;

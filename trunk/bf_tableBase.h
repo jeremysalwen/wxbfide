@@ -4,12 +4,12 @@
 #include <wx/grid.h>
 #include <algorithm>
 #include <typeinfo>
+#include "bf_vm.h"
 
-class bf_tableBase : public wxGridTableBase {
-     unsigned char *data;
+class bf_tableBase : public wxGridTableBase, public bf_vm {
+    unsigned char *data;
+    unsigned int bf_ptr;
 public:
-    unsigned char get_data(int index);
-    void set_data(int index, unsigned char value);
     bf_tableBase();
     virtual ~bf_tableBase();
     int GetNumberRows();
@@ -17,11 +17,15 @@ public:
     bool IsEmptyCell(int,int);
     wxString GetValue(int,int);
     void SetValue(int, int, const wxString&);
-    void reset_values();
-    void inc_cell(int);
-    void dec_cell(int);
-    void set_cell(int,unsigned char);
-    unsigned char get_cell(int);
+    virtual void reset_values();
+    virtual void inc_cell();
+    virtual void dec_cell();
+    virtual void set_cell(unsigned char);
+    virtual unsigned char get_cell();
+    virtual void inc_ptr();
+    virtual void dec_ptr();
+    virtual unsigned int get_ptr();
+    virtual void set_ptr(unsigned int);
 protected:
 private:
     bool bounds_check(int i);
