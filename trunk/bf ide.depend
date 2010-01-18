@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1207355291 source:/home/jeremy/c/bf ide/bf_ideApp.cpp
+1263829113 source:/home/jeremy/c/bf ide/bf_ideApp.cpp
 	"bf_ideApp.h"
-	"bf_ideMain.h"
+	"NewFrame.h"
 	<wx/image.h>
 	<iostream>
 
@@ -849,20 +849,20 @@
 1196398776 /usr/include/wx-2.8/wx/generic/listctrl.h
 	"wx/textctrl.h"
 
-1263789212 source:/home/jeremy/c/bf ide/bf_table.cpp
+1263848695 source:/home/jeremy/c/bf ide/bf_table.cpp
 	"bf_table.h"
 
-1207015020 /home/jeremy/c/bf ide/bf_table.h
+1263848690 /home/jeremy/c/bf ide/bf_table.h
 	<wx/grid.h>
 	"bf_tableBase.h"
 
-1263794220 /home/jeremy/c/bf ide/bf_tableBase.h
+1263795930 /home/jeremy/c/bf ide/bf_tableBase.h
 	<wx/grid.h>
 	<algorithm>
 	<typeinfo>
 	"bf_vm.h"
 
-1263794206 source:/home/jeremy/c/bf ide/bf_tableBase.cpp
+1263795930 source:/home/jeremy/c/bf ide/bf_tableBase.cpp
 	"bf_tableBase.h"
 
 1260738530 /usr/include/wx-2.8/wx/button.h
@@ -880,18 +880,36 @@
 
 1260738531 /usr/include/wx-2.8/wx/gtk/button.h
 
-1263793138 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
+1263853793 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
 
-1263787518 /home/jeremy/c/bf ide/bf_interpreter_thread.h
+1263853748 /home/jeremy/c/bf ide/bf_interpreter_thread.h
 	<wx/thread.h>
 	<iostream>
 	<stack>
-	"bf_ideMain.h"
+	"NewFrame.h"
 	"wx/string.h"
 	"bf_vm.h"
 
 1263757628 /home/jeremy/c/bf ide/bf_interpreter.h
 
-1263794320 /home/jeremy/c/bf ide/bf_vm.h
+1263795930 /home/jeremy/c/bf ide/bf_vm.h
+
+1263853779 source:/home/jeremy/c/bf ide/NewFrame.cpp
+	"NewFrame.h"
+	<wx/intl.h>
+	<wx/string.h>
+
+1263849739 /home/jeremy/c/bf ide/NewFrame.h
+	"bf_table.h"
+	"bf_interpreter_thread.h"
+	<iostream>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+	<wx/panel.h>
+	<wx/grid.h>
+	<wx/button.h>
+	<wx/frame.h>
+
+1263795930 source:/home/jeremy/c/bf ide/bf_interpreter.cpp
 

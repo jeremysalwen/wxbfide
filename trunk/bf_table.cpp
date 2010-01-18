@@ -19,12 +19,3 @@ bf_table::~bf_table() {
     //dtor
 }
 
-bf_tableBase * bf_table::GetTable() {
-    return dynamic_cast<bf_tableBase*>(wxGrid::GetTable());
-}
-
-void bf_table::SetTable(wxGridTableBase * w,bool takeOwnership, wxGridSelectionModes s) {
-    if (dynamic_cast<bf_tableBase*>(w)) {
-        wxGrid::SetTable(w,takeOwnership,s);
-    }
-}

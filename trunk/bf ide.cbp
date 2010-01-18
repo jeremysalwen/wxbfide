@@ -42,24 +42,27 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+		<Unit filename="NewMain.cpp" />
+		<Unit filename="NewMain.h" />
 		<Unit filename="bf_ideApp.cpp" />
 		<Unit filename="bf_ideApp.h" />
 		<Unit filename="bf_ideMain.cpp" />
 		<Unit filename="bf_ideMain.h" />
+		<Unit filename="bf_interpreter.cpp" />
 		<Unit filename="bf_interpreter_thread.cpp" />
 		<Unit filename="bf_interpreter_thread.h" />
 		<Unit filename="bf_table.cpp" />
 		<Unit filename="bf_table.h" />
 		<Unit filename="bf_tableBase.cpp" />
 		<Unit filename="bf_tableBase.h" />
-		<Unit filename="wxsmith/bf_ideframe.wxs" />
+		<Unit filename="bf_vm.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="bf_ideApp.cpp" main="bf_ideFrame" init_handlers="necessary" language="CPP" />
 				<resources>
-					<wxFrame wxs="wxsmith/bf_ideframe.wxs" src="bf_ideMain.cpp" hdr="bf_ideMain.h" name="bf_ideFrame" language="CPP" />
+					<wxFrame wxs="wxsmith/NewMain.wxs" src="NewMain.cpp" hdr="NewMain.h" name="NewMain" language="CPP" />
 				</resources>
 			</wxsmith>
 			<debugger />
