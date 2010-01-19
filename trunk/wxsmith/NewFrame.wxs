@@ -10,7 +10,7 @@
 			<size>568,453</size>
 			<object class="wxButton" name="ID_BUTTON1" variable="RunButton" member="yes">
 				<label>Run</label>
-				<pos>16,408</pos>
+				<pos>8,408</pos>
 				<handler function="OnRunButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="OutputBox" member="yes">
@@ -39,19 +39,23 @@
 			</object>
 			<object class="wxButton" name="ID_BUTTON2" variable="StopButton" member="yes">
 				<label>Stop</label>
-				<pos>112,408</pos>
+				<pos>104,408</pos>
+				<handler function="OnStopButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON3" variable="DebugButton" member="yes">
 				<label>Debug</label>
-				<pos>208,408</pos>
+				<pos>200,408</pos>
+				<handler function="OnDebugButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON4" variable="StepButton" member="yes">
 				<label>Step</label>
-				<pos>400,408</pos>
+				<pos>392,408</pos>
+				<handler function="OnStepButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON5" variable="PauseButton" member="yes">
 				<label>Pause</label>
-				<pos>304,408</pos>
+				<pos>296,408</pos>
+				<handler function="OnPauseButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON6" variable="QuitButton" member="yes">
 				<label>Quit</label>

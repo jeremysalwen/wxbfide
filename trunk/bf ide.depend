@@ -880,30 +880,32 @@
 
 1260738531 /usr/include/wx-2.8/wx/gtk/button.h
 
-1263865652 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
+1263872951 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
 
-1263858857 /home/jeremy/c/bf ide/bf_interpreter_thread.h
+1263871473 /home/jeremy/c/bf ide/bf_interpreter_thread.h
 	<wx/thread.h>
 	<iostream>
 	<stack>
 	"NewFrame.h"
 	"wx/string.h"
 	"bf_vm.h"
+	"breakpoint_lister.h"
 
 1263757628 /home/jeremy/c/bf ide/bf_interpreter.h
 
 1263863344 /home/jeremy/c/bf ide/bf_vm.h
 
-1263866620 source:/home/jeremy/c/bf ide/NewFrame.cpp
+1263873569 source:/home/jeremy/c/bf ide/NewFrame.cpp
 	"NewFrame.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1263866090 /home/jeremy/c/bf ide/NewFrame.h
+1263872099 /home/jeremy/c/bf ide/NewFrame.h
 	"bf_table.h"
 	"bf_interpreter_thread.h"
 	"wx/wxscintilla.h"
+	"breakpoint_lister.h"
 	<iostream>
 	<wx/stattext.h>
 	<wx/textctrl.h>
@@ -1553,4 +1555,6 @@
 
 1260738531 /usr/include/wx-2.8/wx/gtk/dnd.h
 	"wx/icon.h"
+
+1263871612 /home/jeremy/c/bf ide/breakpoint_lister.h
 

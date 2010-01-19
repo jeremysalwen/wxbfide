@@ -4,6 +4,7 @@
 #include "bf_table.h"
 #include "bf_interpreter_thread.h"
 #include "wx/wxscintilla.h"
+#include "breakpoint_lister.h"
 #include <iostream>
 //(*Headers(NewFrame)
 #include <wx/stattext.h>
@@ -14,13 +15,13 @@
 #include <wx/frame.h>
 //*)
 
-class NewFrame: public wxFrame
+class NewFrame: public wxFrame, public breakpoint_lister
 {
 	public:
 
 		NewFrame(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~NewFrame();
-
+        virtual bool HasBreakpoint(unsigned int linenumber);
 		//(*Declarations(NewFrame)
 		wxButton* StepButton;
 		wxStaticText* InputLabel;
@@ -65,8 +66,12 @@ class NewFrame: public wxFrame
 		void OnButton2Click(wxCommandEvent& event);
 		void OnQuitButtonClick(wxCommandEvent& event);
 		void OnRunButtonClick(wxCommandEvent& event);
+		void OnStopButtonClick(wxCommandEvent& event);
+		void OnDebugButtonClick(wxCommandEvent& event);
+		void OnPauseButtonClick(wxCommandEvent& event);
+		void OnStepButtonClick(wxCommandEvent& event);
 		//*)
-
+        void OnMarginClicked(wxScintillaEvent& event);
 		DECLARE_EVENT_TABLE()
 };
 

@@ -9,6 +9,7 @@ class bf_interpreter_thread;
 #include "NewFrame.h"
 #include "wx/string.h"
 #include "bf_vm.h"
+#include "breakpoint_lister.h"
 
 enum runmode_type {stopped,running,debugging,paused,stepped};
 
@@ -19,7 +20,7 @@ typedef struct {
 class bf_interpreter_thread : public wxThread
 {
     public:
-        bf_interpreter_thread(std::istream*,std::ostream*,const wxString,bf_vm*);
+        bf_interpreter_thread(std::istream*,std::ostream*,const wxString,bf_vm*, breakpoint_lister*);
         virtual ~bf_interpreter_thread();
         virtual wxThread::ExitCode Entry();
         void processStep();
@@ -35,6 +36,7 @@ class bf_interpreter_thread : public wxThread
     std::istream* in;
     std::ostream* out;
     std::stack<brace_entry> opening_braces;
+    breakpoint_lister * breakpoints;
     unsigned int linenumber;
     unsigned int lines_since_last_brace;
 };
