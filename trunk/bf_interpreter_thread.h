@@ -13,7 +13,7 @@ class bf_interpreter_thread;
 enum runmode_type {stopped,running,debugging,paused,stepped};
 
 typedef struct {
-    wxChar* location;
+    const wxChar* location;
     unsigned int num_newlines;
 } brace_entry;
 class bf_interpreter_thread : public wxThread

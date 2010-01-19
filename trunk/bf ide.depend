@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1263829113 source:/home/jeremy/c/bf ide/bf_ideApp.cpp
+1263862512 source:/home/jeremy/c/bf ide/bf_ideApp.cpp
 	"bf_ideApp.h"
 	"NewFrame.h"
 	<wx/image.h>
@@ -880,10 +880,10 @@
 
 1260738531 /usr/include/wx-2.8/wx/gtk/button.h
 
-1263853793 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
+1263863148 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
 
-1263853748 /home/jeremy/c/bf ide/bf_interpreter_thread.h
+1263858857 /home/jeremy/c/bf ide/bf_interpreter_thread.h
 	<wx/thread.h>
 	<iostream>
 	<stack>
@@ -893,9 +893,9 @@
 
 1263757628 /home/jeremy/c/bf ide/bf_interpreter.h
 
-1263795930 /home/jeremy/c/bf ide/bf_vm.h
+1263863344 /home/jeremy/c/bf ide/bf_vm.h
 
-1263853779 source:/home/jeremy/c/bf ide/NewFrame.cpp
+1263862825 source:/home/jeremy/c/bf ide/NewFrame.cpp
 	"NewFrame.h"
 	<wx/intl.h>
 	<wx/string.h>

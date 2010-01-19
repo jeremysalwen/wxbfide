@@ -84,5 +84,10 @@ void NewFrame::reset_processing_thread() {
 void NewFrame::OnRunButtonClick(wxCommandEvent& event)
 {
     reset_processing_thread();
+    processing_thread->mutex.Lock();
+    processing_thread->runmode=running;
+    processing_thread->unpaused_condition.Broadcast();
+    processing_thread->mutex.Unlock();
+
 }
 

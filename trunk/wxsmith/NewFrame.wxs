@@ -39,7 +39,7 @@
 				<label>Input</label>
 				<pos>312,144</pos>
 			</object>
-			<object class="wxGrid" name="ID_GRID1" subclass="bf_table" variable="Grid1" member="yes">
+			<object class="wxGrid" name="ID_GRID1" variable="DataGrid" member="yes">
 				<pos>312,32</pos>
 				<size>232,96</size>
 			</object>

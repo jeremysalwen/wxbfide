@@ -12,6 +12,8 @@ class bf_vm {
         virtual void dec_ptr()=0;
         virtual unsigned int get_ptr()=0;
         virtual void set_ptr(unsigned int)=0;
+    protected:
+        bf_vm(){};
 };
 
 
