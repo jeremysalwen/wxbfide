@@ -5,9 +5,9 @@
 #include <wx/string.h>
 //*)
 
+const long NewFrame::ID_TEXTCTRL1 = wxNewId();
 //(*IdInit(NewFrame)
 const long NewFrame::ID_BUTTON1 = wxNewId();
-const long NewFrame::ID_TEXTCTRL1 = wxNewId();
 const long NewFrame::ID_TEXTCTRL2 = wxNewId();
 const long NewFrame::ID_TEXTCTRL3 = wxNewId();
 const long NewFrame::ID_STATICTEXT1 = wxNewId();
@@ -34,7 +34,6 @@ NewFrame::NewFrame(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSiz
 	Move(wxDefaultPosition);
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(136,232), wxSize(568,453), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	RunButton = new wxButton(Panel1, ID_BUTTON1, _("Run"), wxPoint(16,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-	ProgramBox = new wxTextCtrl(Panel1, ID_TEXTCTRL1, _("Text"), wxPoint(16,16), wxSize(280,376), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	OutputBox = new wxTextCtrl(Panel1, ID_TEXTCTRL2, _("Text"), wxPoint(312,288), wxSize(240,104), wxTE_MULTILINE|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL2"));
 	InputBox = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("Text"), wxPoint(312,168), wxSize(240,88), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL3"));
 	OutputLabel = new wxStaticText(Panel1, ID_STATICTEXT1, _("Output"), wxPoint(312,264), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
@@ -61,7 +60,10 @@ NewFrame::NewFrame(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSiz
     DataGrid->SetMargins(0,0);
     //DataGrid->SetOrCalcColumnSizes(false);
     //DataGrid->SetOrCalcRowSizes(false);
-    processing_thread=new bf_interpreter_thread(new std::istream(InputBox),new std::ostream(OutputBox),ProgramBox->GetValue().c_str(),b);
+
+    ProgramBox = new wxScintilla(Panel1, ID_TEXTCTRL1, wxPoint(16,16), wxSize(280,376), wxTE_MULTILINE, _T("ID_TEXTCTRL1"));
+    ProgramBox->SetScrollWidth(260);
+    processing_thread=new bf_interpreter_thread(new std::istream(InputBox),new std::ostream(OutputBox),ProgramBox->GetText().c_str(),b);
     processing_thread->Run();
 }
 
@@ -79,7 +81,7 @@ void NewFrame::OnQuitButtonClick(wxCommandEvent& event)
 }
 
 void NewFrame::reset_processing_thread() {
-    processing_thread->reset(new std::istream(InputBox),new std::ostream(OutputBox),ProgramBox->GetValue());
+    processing_thread->reset(new std::istream(InputBox),new std::ostream(OutputBox),ProgramBox->GetText());
 }
 void NewFrame::OnRunButtonClick(wxCommandEvent& event)
 {

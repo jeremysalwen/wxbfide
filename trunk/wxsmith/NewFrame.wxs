@@ -13,12 +13,6 @@
 				<pos>16,408</pos>
 				<handler function="OnRunButtonClick" entry="EVT_BUTTON" />
 			</object>
-			<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="ProgramBox" member="yes">
-				<value>Text</value>
-				<pos>16,16</pos>
-				<size>280,376</size>
-				<style>wxTE_MULTILINE</style>
-			</object>
 			<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="OutputBox" member="yes">
 				<value>Text</value>
 				<pos>312,288</pos>

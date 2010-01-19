@@ -121,6 +121,7 @@ void bf_interpreter_thread::reset(std::istream* i, std::ostream* o, const wxChar
     delete out;
     out=o;
     program=prog;
+    program_index=program.c_str();
     linenumber=1;
     runmode=stopped;
     mutex.Unlock();

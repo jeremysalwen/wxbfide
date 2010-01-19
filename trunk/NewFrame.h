@@ -3,6 +3,7 @@
 
 #include "bf_table.h"
 #include "bf_interpreter_thread.h"
+#include "wx/wxscintilla.h"
 #include <iostream>
 //(*Headers(NewFrame)
 #include <wx/stattext.h>
@@ -21,7 +22,6 @@ class NewFrame: public wxFrame
 		virtual ~NewFrame();
 
 		//(*Declarations(NewFrame)
-		wxTextCtrl* ProgramBox;
 		wxButton* StepButton;
 		wxStaticText* InputLabel;
 		wxPanel* Panel1;
@@ -35,13 +35,14 @@ class NewFrame: public wxFrame
 		wxStaticText* OutputLabel;
 		wxButton* QuitButton;
 		//*)
+		wxScintilla* ProgramBox;
 
 		bf_interpreter_thread * processing_thread;
 	protected:
         void reset_processing_thread();
+        static const long ID_TEXTCTRL1;
 		//(*Identifiers(NewFrame)
 		static const long ID_BUTTON1;
-		static const long ID_TEXTCTRL1;
 		static const long ID_TEXTCTRL2;
 		static const long ID_TEXTCTRL3;
 		static const long ID_STATICTEXT1;
