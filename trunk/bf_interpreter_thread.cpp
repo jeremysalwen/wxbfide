@@ -13,8 +13,7 @@ bf_interpreter_thread::bf_interpreter_thread(std::istream* in,std::ostream* out,
 }
 
 bf_interpreter_thread::~bf_interpreter_thread() {
-    delete in;
-    delete out;
+    //Don't manage streams.
 }
 
 wxThread::ExitCode bf_interpreter_thread::Entry() {
@@ -31,10 +30,7 @@ wxThread::ExitCode bf_interpreter_thread::Entry() {
             unpaused_condition.Wait();
             break;
         case running:
-            processStep();
-            break;
-        case debugging:
-            if(breakpoints->HasBreakpoint(linenumber)) {
+            if (breakpoints->HasBreakpoint(linenumber)) {
                 runmode=paused;
             } else {
                 processStep();
@@ -53,7 +49,7 @@ wxThread::ExitCode bf_interpreter_thread::Entry() {
 
 void bf_interpreter_thread::processStep() {
     brace_entry b;
-    unsigned char c;
+    int c;
     switch (*program_index) {
     case '+':
         vm->inc_cell();
@@ -69,7 +65,7 @@ void bf_interpreter_thread::processStep() {
         break;
     case ',':
         c=in->get();
-        std::cout << (unsigned int)c<<std::endl;
+        std::cout << c<<std::endl;
         vm->set_cell(in->get());
         break;
     case '.':
@@ -123,16 +119,9 @@ void bf_interpreter_thread::skip_to_corresponding_brace() { //assumes program_in
     } while (num_braces!=0);
 }
 
-void bf_interpreter_thread::reset(std::istream* i, std::ostream* o, const wxChar* prog) {
+void bf_interpreter_thread::reset(const wxChar* prog) {
     mutex.Lock();
-    if (&in !=&i) {
-        delete in;
-        in=i;
-    }
-    if (&out !=&o) {
-        delete out;
-        out=o;
-    }
+    vm->reset_values();
     program=prog;
     program_index=program.c_str();
     linenumber=1;
@@ -140,3 +129,9 @@ void bf_interpreter_thread::reset(std::istream* i, std::ostream* o, const wxChar
     mutex.Unlock();
 }
 
+void bf_interpreter_thread::SetRunmode(runmode_type mode) {
+   mutex.Lock();
+runmode=mode;
+   unpaused_condition.Broadcast();
+mutex.Unlock();
+}

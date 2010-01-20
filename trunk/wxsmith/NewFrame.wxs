@@ -2,65 +2,67 @@
 <wxsmith>
 	<object class="wxFrame" name="NewFrame">
 		<title>BrainF*** Interpreter</title>
-		<size>581,453</size>
+		<size>815,453</size>
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>136,232</pos>
-			<size>568,453</size>
+			<size>816,453</size>
 			<object class="wxButton" name="ID_BUTTON1" variable="RunButton" member="yes">
 				<label>Run</label>
-				<pos>8,408</pos>
+				<pos>24,408</pos>
 				<handler function="OnRunButtonClick" entry="EVT_BUTTON" />
 			</object>
-			<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="OutputBox" member="yes">
-				<value>Text</value>
-				<pos>312,288</pos>
-				<size>240,104</size>
-				<style>wxTE_MULTILINE|wxTE_READONLY</style>
-			</object>
-			<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="InputBox" member="yes">
-				<value>Text</value>
-				<pos>312,168</pos>
-				<size>240,88</size>
+			<object class="wxTextCtrl" name="ID_TEXTCTRL3" subclass="wxTerminal" variable="InputBox" member="yes">
+				<pos>360,168</pos>
+				<size>440,208</size>
 				<style>wxTE_MULTILINE</style>
 			</object>
-			<object class="wxStaticText" name="ID_STATICTEXT1" variable="OutputLabel" member="yes">
-				<label>Output</label>
-				<pos>312,264</pos>
-			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT2" variable="InputLabel" member="yes">
-				<label>Input</label>
-				<pos>312,144</pos>
+				<label>Input/ Output</label>
+				<pos>360,144</pos>
 			</object>
 			<object class="wxGrid" name="ID_GRID1" variable="DataGrid" member="yes">
-				<pos>312,32</pos>
-				<size>232,96</size>
+				<pos>360,40</pos>
+				<size>440,96</size>
 			</object>
 			<object class="wxButton" name="ID_BUTTON2" variable="StopButton" member="yes">
 				<label>Stop</label>
-				<pos>104,408</pos>
+				<pos>240,408</pos>
+				<enabled>0</enabled>
 				<handler function="OnStopButtonClick" entry="EVT_BUTTON" />
-			</object>
-			<object class="wxButton" name="ID_BUTTON3" variable="DebugButton" member="yes">
-				<label>Debug</label>
-				<pos>200,408</pos>
-				<handler function="OnDebugButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON4" variable="StepButton" member="yes">
 				<label>Step</label>
-				<pos>392,408</pos>
+				<pos>432,408</pos>
+				<enabled>0</enabled>
 				<handler function="OnStepButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON5" variable="PauseButton" member="yes">
 				<label>Pause</label>
-				<pos>296,408</pos>
+				<pos>336,408</pos>
+				<enabled>0</enabled>
 				<handler function="OnPauseButtonClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxButton" name="ID_BUTTON6" variable="QuitButton" member="yes">
 				<label>Quit</label>
-				<pos>488,408</pos>
+				<pos>720,408</pos>
 				<handler function="OnQuitButtonClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxButton" name="ID_BUTTON8" variable="ClearOutputButton" member="yes">
+				<label>Clear IO</label>
+				<pos>624,408</pos>
+				<handler function="OnClearOutputButtonClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxButton" name="ID_BUTTON7" variable="TrimIOButton" member="yes">
+				<label>Trim IO</label>
+				<pos>528,408</pos>
+				<handler function="OnTrimIOButtonClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxCheckBox" name="ID_CHECKBOX1" variable="BreakPointsEnabled" member="yes">
+				<label>Breakpoints</label>
+				<pos>120,408</pos>
+				<size>104,30</size>
 			</object>
 		</object>
 	</object>

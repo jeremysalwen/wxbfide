@@ -8,16 +8,16 @@
 const long NewFrame::ID_TEXTCTRL1 = wxNewId();
 //(*IdInit(NewFrame)
 const long NewFrame::ID_BUTTON1 = wxNewId();
-const long NewFrame::ID_TEXTCTRL2 = wxNewId();
 const long NewFrame::ID_TEXTCTRL3 = wxNewId();
-const long NewFrame::ID_STATICTEXT1 = wxNewId();
 const long NewFrame::ID_STATICTEXT2 = wxNewId();
 const long NewFrame::ID_GRID1 = wxNewId();
 const long NewFrame::ID_BUTTON2 = wxNewId();
-const long NewFrame::ID_BUTTON3 = wxNewId();
 const long NewFrame::ID_BUTTON4 = wxNewId();
 const long NewFrame::ID_BUTTON5 = wxNewId();
 const long NewFrame::ID_BUTTON6 = wxNewId();
+const long NewFrame::ID_BUTTON8 = wxNewId();
+const long NewFrame::ID_BUTTON7 = wxNewId();
+const long NewFrame::ID_CHECKBOX1 = wxNewId();
 const long NewFrame::ID_PANEL1 = wxNewId();
 //*)
 
@@ -31,27 +31,32 @@ NewFrame::NewFrame(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSiz
 {
 	//(*Initialize(NewFrame)
 	Create(parent, id, _("BrainF*** Interpreter"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
-	SetClientSize(wxSize(581,453));
+	SetClientSize(wxSize(815,453));
 	Move(wxDefaultPosition);
-	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(136,232), wxSize(568,453), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-	RunButton = new wxButton(Panel1, ID_BUTTON1, _("Run"), wxPoint(8,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-	OutputBox = new wxTextCtrl(Panel1, ID_TEXTCTRL2, _("Text"), wxPoint(312,288), wxSize(240,104), wxTE_MULTILINE|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-	InputBox = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("Text"), wxPoint(312,168), wxSize(240,88), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL3"));
-	OutputLabel = new wxStaticText(Panel1, ID_STATICTEXT1, _("Output"), wxPoint(312,264), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-	InputLabel = new wxStaticText(Panel1, ID_STATICTEXT2, _("Input"), wxPoint(312,144), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-	DataGrid = new wxGrid(Panel1, ID_GRID1, wxPoint(312,32), wxSize(232,96), 0, _T("ID_GRID1"));
-	StopButton = new wxButton(Panel1, ID_BUTTON2, _("Stop"), wxPoint(104,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
-	DebugButton = new wxButton(Panel1, ID_BUTTON3, _("Debug"), wxPoint(200,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
-	StepButton = new wxButton(Panel1, ID_BUTTON4, _("Step"), wxPoint(392,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
-	PauseButton = new wxButton(Panel1, ID_BUTTON5, _("Pause"), wxPoint(296,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
-	QuitButton = new wxButton(Panel1, ID_BUTTON6, _("Quit"), wxPoint(488,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON6"));
+	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(136,232), wxSize(816,453), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+	RunButton = new wxButton(Panel1, ID_BUTTON1, _("Run"), wxPoint(24,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	InputBox = new wxTerminal(Panel1, ID_TEXTCTRL3, wxEmptyString, wxPoint(360,168), wxSize(440,208), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+	InputLabel = new wxStaticText(Panel1, ID_STATICTEXT2, _("Input/ Output"), wxPoint(360,144), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+	DataGrid = new wxGrid(Panel1, ID_GRID1, wxPoint(360,40), wxSize(440,96), 0, _T("ID_GRID1"));
+	StopButton = new wxButton(Panel1, ID_BUTTON2, _("Stop"), wxPoint(240,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	StopButton->Disable();
+	StepButton = new wxButton(Panel1, ID_BUTTON4, _("Step"), wxPoint(432,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
+	StepButton->Disable();
+	PauseButton = new wxButton(Panel1, ID_BUTTON5, _("Pause"), wxPoint(336,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
+	PauseButton->Disable();
+	QuitButton = new wxButton(Panel1, ID_BUTTON6, _("Quit"), wxPoint(720,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON6"));
+	ClearOutputButton = new wxButton(Panel1, ID_BUTTON8, _("Clear IO"), wxPoint(624,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
+	TrimIOButton = new wxButton(Panel1, ID_BUTTON7, _("Trim IO"), wxPoint(528,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
+	BreakPointsEnabled = new wxCheckBox(Panel1, ID_CHECKBOX1, _("Breakpoints"), wxPoint(120,408), wxSize(104,30), 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+	BreakPointsEnabled->SetValue(false);
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnRunButtonClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnStopButtonClick);
-	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnDebugButtonClick);
 	Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnStepButtonClick);
 	Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnPauseButtonClick);
 	Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnQuitButtonClick);
+	Connect(ID_BUTTON8,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnClearOutputButtonClick);
+	Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnTrimIOButtonClick);
 	//*)
 
     wxGridCellAttr *w=new wxGridCellAttr();  //memory leak?
@@ -72,7 +77,7 @@ NewFrame::NewFrame(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSiz
     ProgramBox->MarkerDefine(0,wxSCI_MARK_CIRCLE);
     ProgramBox->SetMarginWidth(0,20);
     ProgramBox->SetMarginSensitive(1,true);
-    processing_thread=new bf_interpreter_thread(new std::istream(InputBox),new std::ostream(OutputBox),ProgramBox->GetText(),b,this);
+    processing_thread=new bf_interpreter_thread(InputBox->output,new std::ostream(InputBox),ProgramBox->GetText(),b,this);
     processing_thread->Run();
 }
 
@@ -90,16 +95,17 @@ void NewFrame::OnQuitButtonClick(wxCommandEvent& event)
 }
 
 void NewFrame::reset_processing_thread() {
-    processing_thread->reset(new std::istream(InputBox),new std::ostream(OutputBox),ProgramBox->GetText());
+    processing_thread->reset(ProgramBox->GetText());
 }
 void NewFrame::OnRunButtonClick(wxCommandEvent& event)
 {
+    ProgramBox->SetReadOnly(true);
+    RunButton->Enable(false);
+    StopButton->Enable(true);
+    StepButton->Enable(false);
+    PauseButton->Enable(true);
     reset_processing_thread();
-    processing_thread->mutex.Lock();
-    processing_thread->runmode=running;
-    processing_thread->unpaused_condition.Broadcast();
-    processing_thread->mutex.Unlock();
-
+    processing_thread->SetRunmode(running);
 }
 
 void NewFrame::OnMarginClicked(wxScintillaEvent& event) {
@@ -112,38 +118,42 @@ void NewFrame::OnMarginClicked(wxScintillaEvent& event) {
 }
 
 bool NewFrame::HasBreakpoint(unsigned int linenumber) {
-    return ProgramBox->MarkerGet(linenumber);
+    return BreakPointsEnabled->GetValue() && ProgramBox->MarkerGet(linenumber);
 }
 
 void NewFrame::OnStopButtonClick(wxCommandEvent& event)
 {
+    ProgramBox->SetReadOnly(false);
+    RunButton->Enable(true);
+    StepButton->Enable(false);
+    PauseButton->Enable(false);
     reset_processing_thread();
-    processing_thread->mutex.Lock();
-    processing_thread->runmode=stopped;
-    processing_thread->mutex.Unlock();
+    processing_thread->SetRunmode(stopped);
 }
 
-void NewFrame::OnDebugButtonClick(wxCommandEvent& event)
-{
-    reset_processing_thread();
-    processing_thread->mutex.Lock();
-    processing_thread->runmode=debugging;
-    processing_thread->unpaused_condition.Broadcast();
-    processing_thread->mutex.Unlock();
-}
 
 void NewFrame::OnPauseButtonClick(wxCommandEvent& event)
 {
-    processing_thread->mutex.Lock();
-    processing_thread->runmode=paused;
-    processing_thread->unpaused_condition.Broadcast();
-    processing_thread->mutex.Unlock();
+    RunButton->Enable(true);
+    StepButton->Enable(true);
+    PauseButton->Enable(false);
+    StopButton->Enable(true);
+   processing_thread->SetRunmode(paused);
 }
 
 void NewFrame::OnStepButtonClick(wxCommandEvent& event)
 {
-    processing_thread->mutex.Lock();
-    processing_thread->runmode=stepped;
-    processing_thread->unpaused_condition.Broadcast();
-    processing_thread->mutex.Unlock();
+   processing_thread->SetRunmode(stepped);
+}
+
+
+void NewFrame::OnClearOutputButtonClick(wxCommandEvent& event)
+{
+    InputBox->Clear();
+}
+
+
+void NewFrame::OnTrimIOButtonClick(wxCommandEvent& event)
+{
+    InputBox->ClearExcess();
 }

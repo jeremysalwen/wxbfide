@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="NewFrame.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="6791" topLine="0" />
+	</File>
+	<File name="NewFrame.h" open="1" top="1" tabpos="3">
+		<Cursor position="600" topLine="9" />
+	</File>
+	<File name="bf_ideApp.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="615" topLine="0" />
+	</File>
+	<File name="bf_interpreter_thread.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="2020" topLine="53" />
+	</File>
+	<File name="bf_interpreter_thread.h" open="1" top="0" tabpos="2">
+		<Cursor position="564" topLine="2" />
+	</File>
 	<File name="bf_table.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="598" topLine="0" />
+		<Cursor position="596" topLine="0" />
 	</File>
 	<File name="bf_table.h" open="0" top="0" tabpos="3">
-		<Cursor position="405" topLine="0" />
+		<Cursor position="339" topLine="0" />
 	</File>
 	<File name="bf_tableBase.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1408" topLine="38" />
+		<Cursor position="56" topLine="0" />
 	</File>
 	<File name="bf_tableBase.h" open="0" top="0" tabpos="2">
 		<Cursor position="500" topLine="0" />
+	</File>
+	<File name="bf_vm.h" open="0" top="0" tabpos="0">
+		<Cursor position="486" topLine="0" />
+	</File>
+	<File name="breakpoint_lister.h" open="1" top="0" tabpos="4">
+		<Cursor position="78" topLine="0" />
+	</File>
+	<File name="wx/wxscintilla.h" open="0" top="0" tabpos="0">
+		<Cursor position="54263" topLine="1790" />
 	</File>
 </CodeBlocks_layout_file>

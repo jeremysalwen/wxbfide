@@ -4,11 +4,13 @@
 #include "bf_table.h"
 #include "bf_interpreter_thread.h"
 #include "wx/wxscintilla.h"
+#include "wxTerminal.h"
 #include "breakpoint_lister.h"
 #include <iostream>
 //(*Headers(NewFrame)
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/checkbox.h>
 #include <wx/panel.h>
 #include <wx/grid.h>
 #include <wx/button.h>
@@ -24,17 +26,17 @@ class NewFrame: public wxFrame, public breakpoint_lister
         virtual bool HasBreakpoint(unsigned int linenumber);
 		//(*Declarations(NewFrame)
 		wxButton* StepButton;
+		wxButton* ClearOutputButton;
 		wxStaticText* InputLabel;
+		wxCheckBox* BreakPointsEnabled;
 		wxPanel* Panel1;
-		wxTextCtrl* InputBox;
 		wxButton* PauseButton;
-		wxTextCtrl* OutputBox;
 		wxButton* StopButton;
 		wxButton* RunButton;
-		wxButton* DebugButton;
+		wxButton* TrimIOButton;
 		wxGrid* DataGrid;
-		wxStaticText* OutputLabel;
 		wxButton* QuitButton;
+		wxTerminal* InputBox;
 		//*)
 		wxScintilla* ProgramBox;
 
@@ -44,16 +46,16 @@ class NewFrame: public wxFrame, public breakpoint_lister
         static const long ID_TEXTCTRL1;
 		//(*Identifiers(NewFrame)
 		static const long ID_BUTTON1;
-		static const long ID_TEXTCTRL2;
 		static const long ID_TEXTCTRL3;
-		static const long ID_STATICTEXT1;
 		static const long ID_STATICTEXT2;
 		static const long ID_GRID1;
 		static const long ID_BUTTON2;
-		static const long ID_BUTTON3;
 		static const long ID_BUTTON4;
 		static const long ID_BUTTON5;
 		static const long ID_BUTTON6;
+		static const long ID_BUTTON8;
+		static const long ID_BUTTON7;
+		static const long ID_CHECKBOX1;
 		static const long ID_PANEL1;
 		//*)
 
@@ -70,6 +72,10 @@ class NewFrame: public wxFrame, public breakpoint_lister
 		void OnDebugButtonClick(wxCommandEvent& event);
 		void OnPauseButtonClick(wxCommandEvent& event);
 		void OnStepButtonClick(wxCommandEvent& event);
+		void OnSendInputButtonClick(wxCommandEvent& event);
+		void OnClearOutputButtonClick(wxCommandEvent& event);
+		void OnInputBoxText(wxCommandEvent& event);
+		void OnTrimIOButtonClick(wxCommandEvent& event);
 		//*)
         void OnMarginClicked(wxScintillaEvent& event);
 		DECLARE_EVENT_TABLE()

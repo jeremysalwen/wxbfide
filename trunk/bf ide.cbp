@@ -32,6 +32,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="external_lib/libwxscintilla.so" />
 				</Linker>
 			</Target>
 		</Build>
@@ -41,13 +42,12 @@
 		</Compiler>
 		<Linker>
 			<Add option="`wx-config --libs`" />
+			<Add library="external_lib/libwxscintilla.so" />
 		</Linker>
-		<Unit filename="NewMain.cpp" />
-		<Unit filename="NewMain.h" />
+		<Unit filename="NewFrame.cpp" />
+		<Unit filename="NewFrame.h" />
 		<Unit filename="bf_ideApp.cpp" />
 		<Unit filename="bf_ideApp.h" />
-		<Unit filename="bf_ideMain.cpp" />
-		<Unit filename="bf_ideMain.h" />
 		<Unit filename="bf_interpreter.cpp" />
 		<Unit filename="bf_interpreter_thread.cpp" />
 		<Unit filename="bf_interpreter_thread.h" />
@@ -56,13 +56,16 @@
 		<Unit filename="bf_tableBase.cpp" />
 		<Unit filename="bf_tableBase.h" />
 		<Unit filename="bf_vm.h" />
+		<Unit filename="breakpoint_lister.h" />
+		<Unit filename="external_lib/libwxscintilla.so" />
+		<Unit filename="wx/wxscintilla.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="bf_ideApp.cpp" main="bf_ideFrame" init_handlers="necessary" language="CPP" />
 				<resources>
-					<wxFrame wxs="wxsmith/NewMain.wxs" src="NewMain.cpp" hdr="NewMain.h" name="NewMain" language="CPP" />
+					<wxFrame wxs="wxsmith/NewFrame.wxs" src="NewFrame.cpp" hdr="NewFrame.h" name="NewFrame" language="CPP" />
 				</resources>
 			</wxsmith>
 			<debugger />

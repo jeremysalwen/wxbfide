@@ -880,10 +880,10 @@
 
 1260738531 /usr/include/wx-2.8/wx/gtk/button.h
 
-1263872951 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
+1263959643 source:/home/jeremy/c/bf ide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
 
-1263871473 /home/jeremy/c/bf ide/bf_interpreter_thread.h
+1263959480 /home/jeremy/c/bf ide/bf_interpreter_thread.h
 	<wx/thread.h>
 	<iostream>
 	<stack>
@@ -896,19 +896,21 @@
 
 1263863344 /home/jeremy/c/bf ide/bf_vm.h
 
-1263873569 source:/home/jeremy/c/bf ide/NewFrame.cpp
+1263959618 source:/home/jeremy/c/bf ide/NewFrame.cpp
 	"NewFrame.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1263872099 /home/jeremy/c/bf ide/NewFrame.h
+1263959072 /home/jeremy/c/bf ide/NewFrame.h
 	"bf_table.h"
 	"bf_interpreter_thread.h"
 	"wx/wxscintilla.h"
+	"wxTerminal.h"
 	"breakpoint_lister.h"
 	<iostream>
 	<wx/stattext.h>
 	<wx/textctrl.h>
+	<wx/checkbox.h>
 	<wx/panel.h>
 	<wx/grid.h>
 	<wx/button.h>
@@ -1557,4 +1559,32 @@
 	"wx/icon.h"
 
 1263871612 /home/jeremy/c/bf ide/breakpoint_lister.h
+
+1263957657 /home/jeremy/c/bf ide/wxTerminal.h
+	<sstream>
+	<wx/textctrl.h>
+	<wx/clipbrd.h>
+	<wx/dataobj.h>
+
+1263950989 /home/jeremy/c/bf ide/wxTerminal.cpp
+	"wxTerminal.h"
+
+1263958114 source:/home/jeremy/c/bf ide/wxTerminal.cpp
+	"wxTerminal.h"
+
+1260738531 /usr/include/wx-2.8/wx/clipbrd.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/wxchar.h"
+	"wx/msw/clipbrd.h"
+	"wx/motif/clipbrd.h"
+	"wx/gtk/clipbrd.h"
+	"wx/gtk1/clipbrd.h"
+	"wx/x11/clipbrd.h"
+	"wx/mgl/clipbrd.h"
+	"wx/mac/clipbrd.h"
+	"wx/cocoa/clipbrd.h"
+	"wx/os2/clipbrd.h"
+
+1260738531 /usr/include/wx-2.8/wx/gtk/clipbrd.h
 
