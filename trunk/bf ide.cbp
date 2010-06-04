@@ -14,11 +14,10 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-pg" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add option="-pg" />
+					<Add library="external_lib/libwxscintilla.so" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -37,8 +36,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="`wx-config --cflags`" />
 			<Add option="-Wall" />
+			<Add option="`wx-config --cflags`" />
 		</Compiler>
 		<Linker>
 			<Add option="`wx-config --libs`" />
@@ -59,6 +58,8 @@
 		<Unit filename="breakpoint_lister.h" />
 		<Unit filename="external_lib/libwxscintilla.so" />
 		<Unit filename="wx/wxscintilla.h" />
+		<Unit filename="wxTerminal.cpp" />
+		<Unit filename="wxTerminal.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

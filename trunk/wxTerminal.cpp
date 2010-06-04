@@ -27,6 +27,7 @@ void wxTerminal::OnTextPaste(wxClipboardTextEvent& event) {
         wxTheClipboard->GetData( data );
         wxString text=data.GetText();
         *output<<text;
+        output->flush();
         wxTheClipboard->Close();
     }
     event.Skip();

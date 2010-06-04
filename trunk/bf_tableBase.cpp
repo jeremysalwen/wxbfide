@@ -49,6 +49,7 @@ inline bool bf_tableBase::bounds_check(int i) {
 
 void bf_tableBase::reset_values() {
     std::fill_n(data,30000,0);
+    bf_ptr=0;
 }
 
 void bf_tableBase::inc_cell() {
