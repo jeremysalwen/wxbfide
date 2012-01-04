@@ -44,6 +44,7 @@ wxThread::ExitCode bf_interpreter_thread::Entry() {
 
         mutex.Unlock();
     }
+    return 0;
 }
 
 

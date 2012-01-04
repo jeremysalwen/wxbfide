@@ -22,8 +22,8 @@
 	<File name="bf_table.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="596" topLine="0" />
 	</File>
-	<File name="bf_table.h" open="0" top="0" tabpos="3">
-		<Cursor position="339" topLine="0" />
+	<File name="bf_table.h" open="1" top="1" tabpos="10">
+		<Cursor position="58" topLine="2" />
 	</File>
 	<File name="bf_tableBase.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="950" topLine="35" />
@@ -40,8 +40,8 @@
 	<File name="wx/wxscintilla.h" open="0" top="0" tabpos="0">
 		<Cursor position="54263" topLine="1790" />
 	</File>
-	<File name="wxTerminal.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="263" topLine="0" />
+	<File name="wxTerminal.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="811" topLine="9" />
 	</File>
 	<File name="wxTerminal.h" open="1" top="0" tabpos="1">
 		<Cursor position="684" topLine="0" />

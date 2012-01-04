@@ -8,13 +8,13 @@
 #include "breakpoint_lister.h"
 #include <iostream>
 //(*Headers(NewFrame)
+#include <wx/grid.h>
+#include <wx/checkbox.h>
+#include <wx/button.h>
+#include <wx/panel.h>
+#include <wx/frame.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/checkbox.h>
-#include <wx/panel.h>
-#include <wx/grid.h>
-#include <wx/button.h>
-#include <wx/frame.h>
 //*)
 
 class NewFrame: public wxFrame, public breakpoint_lister
@@ -26,17 +26,17 @@ class NewFrame: public wxFrame, public breakpoint_lister
         virtual bool HasBreakpoint(unsigned int linenumber);
 		//(*Declarations(NewFrame)
 		wxButton* StepButton;
-		wxButton* ClearOutputButton;
-		wxStaticText* InputLabel;
-		wxCheckBox* BreakPointsEnabled;
-		wxPanel* Panel1;
-		wxButton* PauseButton;
 		wxButton* StopButton;
-		wxButton* RunButton;
+		wxButton* PauseButton;
+		wxPanel* Panel1;
 		wxButton* TrimIOButton;
 		wxGrid* DataGrid;
 		wxButton* QuitButton;
+		wxCheckBox* BreakPointsEnabled;
+		wxStaticText* InputLabel;
+		wxButton* RunButton;
 		wxTerminal* InputBox;
+		wxButton* ClearOutputButton;
 		//*)
 		wxScintilla* ProgramBox;
 

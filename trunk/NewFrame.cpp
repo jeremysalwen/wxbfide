@@ -1,8 +1,8 @@
 #include "NewFrame.h"
 
 //(*InternalHeaders(NewFrame)
-#include <wx/intl.h>
 #include <wx/string.h>
+#include <wx/intl.h>
 //*)
 
 const long NewFrame::ID_TEXTCTRL1 = wxNewId();
