@@ -1588,21 +1588,22 @@
 
 1264583996 /usr/include/wx-2.8/wx/gtk/clipbrd.h
 
-1325664324 source:/home/jeremy/wx/wxbfide/bf_ideApp.cpp
+1325670373 source:/home/jeremy/wx/wxbfide/bf_ideApp.cpp
 	"bf_ideApp.h"
+	"NewFrame.h"
 	<wx/image.h>
 	<iostream>
 
 1325662969 /home/jeremy/wx/wxbfide/bf_ideApp.h
 	<wx/app.h>
 
-1325663683 /home/jeremy/wx/wxbfide/NewFrame.h
+1325666893 /home/jeremy/wx/wxbfide/NewFrame.h
 	"bf_table.h"
 	"bf_interpreter_thread.h"
-	"wx/wxscintilla.h"
 	"wxTerminal.h"
 	"breakpoint_lister.h"
 	<iostream>
+	<wx/stc/stc.h>
 	<wx/grid.h>
 	<wx/checkbox.h>
 	<wx/button.h>
@@ -1650,7 +1651,7 @@
 1325662969 source:/home/jeremy/wx/wxbfide/bf_tableBase.cpp
 	"bf_tableBase.h"
 
-1325663753 source:/home/jeremy/wx/wxbfide/NewFrame.cpp
+1325670676 source:/home/jeremy/wx/wxbfide/NewFrame.cpp
 	"NewFrame.h"
 	<wx/string.h>
 	<wx/intl.h>
@@ -3289,4 +3290,12 @@
 
 1325663649 source:/home/jeremy/wx/wxbfide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
+
+1302595078 /usr/include/wx-2.9/wx/stc/stc.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/dnd.h"
+	"wx/stopwatch.h"
+	"wx/textentry.h"
+	"wx/textctrl.h"
 

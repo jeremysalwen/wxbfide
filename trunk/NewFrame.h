@@ -3,10 +3,10 @@
 
 #include "bf_table.h"
 #include "bf_interpreter_thread.h"
-#include "wx/wxscintilla.h"
 #include "wxTerminal.h"
 #include "breakpoint_lister.h"
 #include <iostream>
+#include <wx/stc/stc.h>
 //(*Headers(NewFrame)
 #include <wx/grid.h>
 #include <wx/checkbox.h>
@@ -38,7 +38,7 @@ class NewFrame: public wxFrame, public breakpoint_lister
 		wxTerminal* InputBox;
 		wxButton* ClearOutputButton;
 		//*)
-		wxScintilla* ProgramBox;
+		wxStyledTextCtrl* ProgramBox;
 
 		bf_interpreter_thread * processing_thread;
 	protected:
@@ -77,7 +77,7 @@ class NewFrame: public wxFrame, public breakpoint_lister
 		void OnInputBoxText(wxCommandEvent& event);
 		void OnTrimIOButtonClick(wxCommandEvent& event);
 		//*)
-        void OnMarginClicked(wxScintillaEvent& event);
+        void OnMarginClicked(wxStyledTextEvent& event);
 		DECLARE_EVENT_TABLE()
 };
 

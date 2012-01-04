@@ -24,7 +24,7 @@ const long NewFrame::ID_PANEL1 = wxNewId();
 BEGIN_EVENT_TABLE(NewFrame,wxFrame)
 	//(*EventTable(NewFrame)
 	//*)
-	EVT_SCI_MARGINCLICK(-1,NewFrame::OnMarginClicked)
+	EVT_STC_MARGINCLICK(-1,NewFrame::OnMarginClicked)
 END_EVENT_TABLE()
 
 NewFrame::NewFrame(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -59,22 +59,23 @@ NewFrame::NewFrame(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSiz
 	Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&NewFrame::OnTrimIOButtonClick);
 	//*)
 
+    bf_tableBase * b =new bf_tableBase;
+    DataGrid->SetTable(b,true);
     wxGridCellAttr *w=new wxGridCellAttr();  //memory leak?
     w->SetReadOnly(true);
-    DataGrid->SetRowAttr(1,w);
-    DataGrid->SetColumnWidth(1,10);
+    DataGrid->SetRowAttr(0,w);
+    DataGrid->SetColumnWidth(0,10);
     DataGrid->SetRowLabelSize(0);
     DataGrid->SetColLabelSize(0);
     DataGrid->DisableDragGridSize();
-    bf_tableBase * b =new bf_tableBase;
-    DataGrid->SetTable(b,true);
+
     DataGrid->SetMargins(0,0);
     //DataGrid->SetOrCalcColumnSizes(false);
     //DataGrid->SetOrCalcRowSizes(false);
 
-    ProgramBox = new wxScintilla(Panel1, ID_TEXTCTRL1, wxPoint(16,16), wxSize(280,376), wxTE_MULTILINE, _T("ID_TEXTCTRL1"));
+    ProgramBox = new wxStyledTextCtrl(Panel1, ID_TEXTCTRL1, wxPoint(16,16), wxSize(280,376), wxTE_MULTILINE, _T("ID_TEXTCTRL1"));
     ProgramBox->SetScrollWidth(260);
-    ProgramBox->MarkerDefine(0,wxSCI_MARK_CIRCLE);
+    ProgramBox->MarkerDefine(0,wxSTC_MARK_CIRCLE);
     ProgramBox->SetMarginWidth(0,20);
     ProgramBox->SetMarginSensitive(1,true);
     processing_thread=new bf_interpreter_thread(InputBox->output,new std::ostream(InputBox),ProgramBox->GetText(),b,this);
@@ -108,7 +109,7 @@ void NewFrame::OnRunButtonClick(wxCommandEvent& event)
     processing_thread->SetRunmode(running);
 }
 
-void NewFrame::OnMarginClicked(wxScintillaEvent& event) {
+void NewFrame::OnMarginClicked(wxStyledTextEvent& event) {
     int line=ProgramBox->LineFromPosition(event.GetPosition());
     if(ProgramBox->MarkerGet(line)) {
         ProgramBox->MarkerDelete(line,0);
