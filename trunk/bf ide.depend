@@ -1588,9 +1588,8 @@
 
 1264583996 /usr/include/wx-2.8/wx/gtk/clipbrd.h
 
-1325662969 source:/home/jeremy/wx/wxbfide/bf_ideApp.cpp
+1325664324 source:/home/jeremy/wx/wxbfide/bf_ideApp.cpp
 	"bf_ideApp.h"
-	"NewFrame.h"
 	<wx/image.h>
 	<iostream>
 
@@ -1651,10 +1650,10 @@
 1325662969 source:/home/jeremy/wx/wxbfide/bf_tableBase.cpp
 	"bf_tableBase.h"
 
-1325662969 source:/home/jeremy/wx/wxbfide/NewFrame.cpp
+1325663753 source:/home/jeremy/wx/wxbfide/NewFrame.cpp
 	"NewFrame.h"
-	<wx/intl.h>
 	<wx/string.h>
+	<wx/intl.h>
 
 1302595077 /usr/include/wx-2.9/wx/grid.h
 	"wx/generic/grid.h"

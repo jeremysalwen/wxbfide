@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="NewFrame.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="4380" topLine="0" />
+		<Cursor position="4380" topLine="24" />
 	</File>
 	<File name="NewFrame.h" open="0" top="0" tabpos="2">
 		<Cursor position="817" topLine="0" />
@@ -13,17 +13,17 @@
 	<File name="bf_ideApp.h" open="1" top="0" tabpos="6">
 		<Cursor position="425" topLine="0" />
 	</File>
-	<File name="bf_interpreter_thread.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="1054" topLine="15" />
+	<File name="bf_interpreter_thread.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="14" topLine="0" />
 	</File>
 	<File name="bf_interpreter_thread.h" open="1" top="0" tabpos="4">
 		<Cursor position="819" topLine="0" />
 	</File>
-	<File name="bf_table.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="596" topLine="0" />
+	<File name="bf_table.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="634" topLine="9" />
 	</File>
-	<File name="bf_table.h" open="1" top="1" tabpos="10">
-		<Cursor position="58" topLine="2" />
+	<File name="bf_table.h" open="1" top="0" tabpos="10">
+		<Cursor position="85" topLine="2" />
 	</File>
 	<File name="bf_tableBase.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="950" topLine="35" />
@@ -40,8 +40,8 @@
 	<File name="wx/wxscintilla.h" open="0" top="0" tabpos="0">
 		<Cursor position="54263" topLine="1790" />
 	</File>
-	<File name="wxTerminal.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="811" topLine="9" />
+	<File name="wxTerminal.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="811" topLine="12" />
 	</File>
 	<File name="wxTerminal.h" open="1" top="0" tabpos="1">
 		<Cursor position="684" topLine="0" />
