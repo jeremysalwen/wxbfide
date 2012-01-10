@@ -1,7 +1,12 @@
 #include "bf_tableBase.h"
 
+#include <wx/event.h>
+#include <wx/grid.h>
+#include "bf_table.h"
 
-bf_tableBase::bf_tableBase() {
+
+
+bf_tableBase::bf_tableBase(wxGrid* p):parent(p) {
     data=new unsigned char[30000];
     reset_values();
 }
@@ -50,13 +55,16 @@ inline bool bf_tableBase::bounds_check(int i) {
 void bf_tableBase::reset_values() {
     std::fill_n(data,30000,0);
     bf_ptr=0;
+    update_gui();
 }
 
 void bf_tableBase::inc_cell() {
     data[bf_ptr]++;
+    update_gui();
 }
 void bf_tableBase::dec_cell() {
     data[bf_ptr]--;
+    update_gui();
 }
 
 unsigned char bf_tableBase::get_cell() {
@@ -65,12 +73,15 @@ unsigned char bf_tableBase::get_cell() {
 
 void bf_tableBase::set_cell(unsigned char value) {
     data[bf_ptr]=value;
+    update_gui();
 }
 void bf_tableBase::inc_ptr() {
     bf_ptr++;
+    update_ptr();
 }
 void bf_tableBase::dec_ptr() {
     bf_ptr--;
+    update_ptr();
 }
 
 unsigned int bf_tableBase::get_ptr() {
@@ -78,4 +89,20 @@ unsigned int bf_tableBase::get_ptr() {
 }
 void bf_tableBase::set_ptr(unsigned int i) {
     bf_ptr=i;
+    update_ptr();
+}
+
+
+void bf_tableBase::update_ptr() {
+    wxCommandEvent* evt=new wxCommandEvent(PtrMoveEvent,wxID_ANY);
+    evt->SetInt(bf_ptr);
+    parent->GetEventHandler()->QueueEvent(evt);
+}
+
+void bf_tableBase::update_gui() {
+    wxGridTableMessage* m=new wxGridTableMessage(this,wxGRIDTABLE_REQUEST_VIEW_GET_VALUES );//very poorly documented
+    //GetView()->ProcessTableMessage(*m); bad bad bad unsafe... but works.
+    wxCommandEvent* e=new wxCommandEvent(RepaintEvent,wxID_ANY);
+    e->SetClientData(m);
+    parent->GetEventHandler()->QueueEvent(e);
 }

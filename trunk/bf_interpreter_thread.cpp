@@ -1,8 +1,8 @@
 #include "bf_interpreter_thread.h"
 
-bf_interpreter_thread::bf_interpreter_thread(std::istream* in,std::ostream* out,const wxString prog, bf_vm * vm,breakpoint_lister* lister):wxThread(wxTHREAD_DETACHED),unpaused_condition(mutex) {
-    this->out=out;
-    this->in=in;
+bf_interpreter_thread::bf_interpreter_thread(wxMutex* mutex, wxCondition* condition, BFTerm* term,const wxString prog, bf_vm * vm,breakpoint_lister* lister):wxThread(wxTHREAD_DETACHED),mutex(mutex),unpaused_condition(condition)
+{
+    this->term=term;
     this->program=prog;
     program_index=program.c_str();
     this->vm=vm;
@@ -12,46 +12,72 @@ bf_interpreter_thread::bf_interpreter_thread(std::istream* in,std::ostream* out,
     Create();
 }
 
-bf_interpreter_thread::~bf_interpreter_thread() {
+bf_interpreter_thread::~bf_interpreter_thread()
+{
     //Don't manage streams.
 }
 
-wxThread::ExitCode bf_interpreter_thread::Entry() {
-    while (true) {
-        mutex.Lock();
+wxThread::ExitCode bf_interpreter_thread::Entry()
+{
+    while (true)
+    {
+        runmode_type tmp;
+        {
+            wxMutexLocker l(*mutex);
+            mutex->Lock();
 
-        if (!*program_index) {
-            runmode=stopped;
+            if (!*program_index)
+            {
+                runmode=stopped;
+            }
+            tmp=runmode;
         }
-        switch (runmode) {
+        switch (tmp)
+        {
         case stepped:
             processStep();
-            runmode=paused;
-            unpaused_condition.Wait();
+            {
+                wxMutexLocker l(*mutex);
+
+                runmode=paused;
+                unpaused_condition->Wait();
+            }
             break;
         case running:
-            if (breakpoints->HasBreakpoint(linenumber)) {
+            bool breakpointed;
+            {
+                wxMutexLocker l(*mutex);
+                breakpointed=breakpoints->HasBreakpoint(linenumber);
+            }
+            if (breakpointed)
+            {
+                wxMutexLocker l(*mutex);
                 runmode=paused;
-            } else {
+            }
+            else
+            {
                 processStep();
             }
             break;
         case stopped:
         case paused:
-            unpaused_condition.Wait();
+        {
+            wxMutexLocker l(*mutex);
+            unpaused_condition->Wait();
             break;
         }
-
-        mutex.Unlock();
+        }
     }
     return 0;
 }
 
 
-void bf_interpreter_thread::processStep() {
+void bf_interpreter_thread::processStep()
+{
     brace_entry b;
     int c;
-    switch (*program_index) {
+    switch (*program_index)
+    {
     case '+':
         vm->inc_cell();
         break;
@@ -65,30 +91,46 @@ void bf_interpreter_thread::processStep() {
         vm->dec_ptr();
         break;
     case ',':
-        c=in->get();
+        char c;
+        {
+            wxMutexLocker l(*mutex);
+            while(term->empty()) {
+                if(runmode==paused || runmode==stopped) {
+                    return;
+                }
+                unpaused_condition->Wait();
+            }
+            c=term->getChar();
+        }
         std::cout << c<<std::endl;
-        vm->set_cell(in->get());
+        vm->set_cell(c);
         break;
     case '.':
-        *out << vm->get_cell();
+        term->DisplayChars(wxString((char)vm->get_cell()));
         break;
     case '[':
-        if (vm->get_cell()) {
+        if (vm->get_cell())
+        {
             b.location=program_index;
             b.num_newlines=lines_since_last_brace;
             opening_braces.push(b);
             lines_since_last_brace=0;
-        } else {
+        }
+        else
+        {
             skip_to_corresponding_brace();
         }
         break;
     case ']':
         b=opening_braces.top();
-        if (vm->get_cell()) {
+        if (vm->get_cell())
+        {
             program_index=b.location-1;//This is so that the increment will cause it to line up.
             linenumber-=b.num_newlines;
             lines_since_last_brace=0;
-        } else {
+        }
+        else
+        {
             lines_since_last_brace+=b.num_newlines;
         }
         opening_braces.pop();
@@ -101,10 +143,13 @@ void bf_interpreter_thread::processStep() {
     program_index++;
 }
 
-void bf_interpreter_thread::skip_to_corresponding_brace() { //assumes program_index points to a '[' finishes pointing to the char after ']'
+void bf_interpreter_thread::skip_to_corresponding_brace()   //assumes program_index points to a '[' finishes pointing to the char after ']'
+{
     unsigned int num_braces=0;
-    do {
-        switch (*program_index) {
+    do
+    {
+        switch (*program_index)
+        {
         case '[':
             num_braces++;
             break;
@@ -117,22 +162,23 @@ void bf_interpreter_thread::skip_to_corresponding_brace() { //assumes program_in
             break;
         }
         program_index++;
-    } while (num_braces!=0);
+    }
+    while (num_braces!=0);
 }
 
-void bf_interpreter_thread::reset(const wxChar* prog) {
-    mutex.Lock();
+void bf_interpreter_thread::reset(const wxChar* prog)
+{
+    wxMutexLocker l(*mutex);
     vm->reset_values();
     program=prog;
     program_index=program.c_str();
     linenumber=1;
     runmode=stopped;
-    mutex.Unlock();
 }
 
-void bf_interpreter_thread::SetRunmode(runmode_type mode) {
-   mutex.Lock();
-runmode=mode;
-   unpaused_condition.Broadcast();
-mutex.Unlock();
+void bf_interpreter_thread::SetRunmode(runmode_type mode)
+{
+    wxMutexLocker l(*mutex);
+    runmode=mode;
+    unpaused_condition->Broadcast();
 }

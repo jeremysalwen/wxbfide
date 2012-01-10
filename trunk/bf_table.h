@@ -1,7 +1,9 @@
 #ifndef BF_TABLE_H
 #define BF_TABLE_H
 #include <wx/grid.h>
-#include "bf_tableBase.h"
+
+const wxEventType PtrMoveEvent = wxNewEventType();
+const wxEventType RepaintEvent = wxNewEventType();
 
 class bf_table:public wxGrid {
 public:
@@ -9,6 +11,9 @@ public:
     virtual ~bf_table();
 protected:
 private:
+    void OnPtrMove(wxCommandEvent& evt);
+    void OnRepaint(wxCommandEvent& evt);
+wxDECLARE_EVENT_TABLE();
 };
 
 #endif // BF_TABLE_H

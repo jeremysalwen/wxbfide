@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="NewFrame">
-		<title>BrainF*** Interpreter</title>
+		<title>BrainFuck Interpreter</title>
 		<size>815,453</size>
-		<pos_arg>1</pos_arg>
-		<size_arg>1</size_arg>
+		<id_arg>0</id_arg>
+		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>136,232</pos>
 			<size>816,453</size>
@@ -12,11 +12,6 @@
 				<label>Run</label>
 				<pos>24,408</pos>
 				<handler function="OnRunButtonClick" entry="EVT_BUTTON" />
-			</object>
-			<object class="wxTextCtrl" name="ID_TEXTCTRL3" subclass="wxTerminal" variable="InputBox" member="yes">
-				<pos>360,168</pos>
-				<size>440,208</size>
-				<style>wxTE_MULTILINE</style>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT2" variable="InputLabel" member="yes">
 				<label>Input/ Output</label>
@@ -63,6 +58,21 @@
 				<label>Breakpoints</label>
 				<pos>120,408</pos>
 				<size>104,30</size>
+			</object>
+			<object class="Custom" name="ID_TERM" subclass="TerminalWx" variable="Term1" member="yes">
+				<creating_code>$(THIS) = new $(CLASS)($(PARENT),$(ID),$(POS),80,24,$(NAME));&#x0A;$(THIS)-&gt;SetSize($(SIZE));</creating_code>
+				<include_file>terminalWx/terminalwx.h</include_file>
+				<local_include>1</local_include>
+				<style></style>
+				<pos>360,176</pos>
+				<size>440,216</size>
+			</object>
+			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
+				<pos>64,216</pos>
+				<size>216,180</size>
+				<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+					<cols>3</cols>
+				</object>
 			</object>
 		</object>
 	</object>

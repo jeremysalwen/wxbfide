@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="IDEFrame">
+		<title>Brainfuck IDE</title>
+		<id_arg>0</id_arg>
+		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+			<rows>2</rows>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
+			<object class="sizeritem">
+				<object class="wxSplitterWindow" name="ID_SPLITTERWINDOW1" variable="SplitterWindow1" member="yes">
+					<sashpos>200</sashpos>
+					<minsize>10</minsize>
+					<orientation>vertical</orientation>
+					<size>100,32</size>
+					<minsize>10,10</minsize>
+					<object class="Custom" name="ID_CODE_EDITOR" subclass="wxStyledTextCtrl" variable="CodeEditor" member="yes">
+						<creating_code>$(THIS) = new $(CLASS)($(PARENT),$(ID),$(POS), $(SIZE), wxDEFAULT__FRAME__STYLE, $(NAME));&#x0A;$(THIS)-&gt;SetMarginWidth(0,$(THIS)-&gt;TextWidth(wxSTC__STYLE__LINENUMBER,&quot;9999&quot;));&#x0A;$(THIS)-&gt;SetMarginSensitive(1,true);&#x0A;$(THIS)-&gt;SetScrollWidth($(SIZE).GetWidth());&#x0A;$(THIS)-&gt;MarkerDefine(0,wxSTC__MARK__CIRCLE);&#x0A;</creating_code>
+						<include_file>wx/stc/stc.h</include_file>
+						<style></style>
+					</object>
+					<object class="wxSplitterWindow" name="ID_SPLITTERWINDOW2" variable="SplitterWindow2" member="yes">
+						<minsize>10</minsize>
+						<pos>114,21</pos>
+						<minsize>10,10</minsize>
+						<object class="wxGrid" name="ID_GRID1" variable="DataGrid" member="yes">
+							<pos>34,15</pos>
+							<size>-1,49d</size>
+							<minsize>-1,49d</minsize>
+							<maxsize>-1,49d</maxsize>
+						</object>
+						<object class="Custom" name="ID_TERM" subclass="BFTerm" variable="Term1" member="yes">
+							<creating_code>$(THIS) = new $(CLASS)($(PARENT),$(ID),$(POS),$(SIZE),$(NAME));</creating_code>
+							<include_file>BFTerm.h</include_file>
+							<local_include>1</local_include>
+							<style></style>
+							<pos>54,60</pos>
+						</object>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
+					<cols>100</cols>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON1" variable="RunButton" member="yes">
+							<label>Run</label>
+							<handler function="OnRunButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX1" variable="BreakPointsEnabled" member="yes">
+							<label>Enable Breakpoints</label>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON2" variable="StopButton" member="yes">
+							<label>Stop</label>
+							<handler function="OnStopButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON3" variable="PauseButton" member="yes">
+							<label>Pause</label>
+							<handler function="OnPauseButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON4" variable="StepButton" member="yes">
+							<label>Step</label>
+							<handler function="OnStepButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON5" variable="ClearButton" member="yes">
+							<label>Clear IO</label>
+							<handler function="OnClearButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON6" variable="QuitButton" member="yes">
+							<label>Quit</label>
+							<handler function="OnQuitButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>

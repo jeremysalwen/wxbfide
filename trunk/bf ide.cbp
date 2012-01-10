@@ -34,6 +34,10 @@
 		<Linker>
 			<Add option="`wx-config --libs std,stc`" />
 		</Linker>
+		<Unit filename="BFTerm.cpp" />
+		<Unit filename="BFTerm.h" />
+		<Unit filename="IDEFrame.cpp" />
+		<Unit filename="IDEFrame.h" />
 		<Unit filename="NewFrame.cpp" />
 		<Unit filename="NewFrame.h" />
 		<Unit filename="bf_ideApp.cpp" />
@@ -47,15 +51,32 @@
 		<Unit filename="bf_tableBase.h" />
 		<Unit filename="bf_vm.h" />
 		<Unit filename="breakpoint_lister.h" />
+		<Unit filename="terminalWx/GTerm/TextManager.cpp" />
+		<Unit filename="terminalWx/GTerm/TextManager.h" />
+		<Unit filename="terminalWx/GTerm/actions.cpp" />
+		<Unit filename="terminalWx/GTerm/gterm.cpp" />
+		<Unit filename="terminalWx/GTerm/gterm.hpp" />
+		<Unit filename="terminalWx/GTerm/keytrans.cpp" />
+		<Unit filename="terminalWx/GTerm/states.cpp" />
+		<Unit filename="terminalWx/GTerm/utils.cpp" />
+		<Unit filename="terminalWx/GTerm/vt52_states.cpp" />
+		<Unit filename="terminalWx/taTelnet/wxterm.cpp" />
+		<Unit filename="terminalWx/taTelnet/wxterm.h" />
+		<Unit filename="terminalWx/terminalinputevent.cpp" />
+		<Unit filename="terminalWx/terminalinputevent.h" />
+		<Unit filename="terminalWx/terminalwx.cpp" />
+		<Unit filename="terminalWx/terminalwx.h" />
 		<Unit filename="wxTerminal.cpp" />
 		<Unit filename="wxTerminal.h" />
+		<Unit filename="wxsmith/IDEFrame.wxs" />
 		<Extensions>
 			<envvars />
 			<code_completion />
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="bf_ideApp.cpp" main="NewFrame" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="bf_ideApp.cpp" main="IDEFrame" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/NewFrame.wxs" src="NewFrame.cpp" hdr="NewFrame.h" name="NewFrame" language="CPP" />
+					<wxFrame wxs="wxsmith/IDEFrame.wxs" src="IDEFrame.cpp" hdr="IDEFrame.h" name="IDEFrame" language="CPP" />
 				</resources>
 			</wxsmith>
 			<debugger />

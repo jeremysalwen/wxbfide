@@ -10,11 +10,12 @@
 //(*Headers(NewFrame)
 #include <wx/grid.h>
 #include <wx/checkbox.h>
+#include <wx/sizer.h>
 #include <wx/button.h>
 #include <wx/panel.h>
+#include "terminalWx/terminalwx.h"
 #include <wx/frame.h>
 #include <wx/stattext.h>
-#include <wx/textctrl.h>
 //*)
 
 class NewFrame: public wxFrame, public breakpoint_lister
@@ -30,12 +31,13 @@ class NewFrame: public wxFrame, public breakpoint_lister
 		wxButton* PauseButton;
 		wxPanel* Panel1;
 		wxButton* TrimIOButton;
+		wxPanel* Panel2;
+		TerminalWx* Term1;
 		wxGrid* DataGrid;
 		wxButton* QuitButton;
 		wxCheckBox* BreakPointsEnabled;
 		wxStaticText* InputLabel;
 		wxButton* RunButton;
-		wxTerminal* InputBox;
 		wxButton* ClearOutputButton;
 		//*)
 		wxStyledTextCtrl* ProgramBox;
@@ -46,7 +48,6 @@ class NewFrame: public wxFrame, public breakpoint_lister
         static const long ID_TEXTCTRL1;
 		//(*Identifiers(NewFrame)
 		static const long ID_BUTTON1;
-		static const long ID_TEXTCTRL3;
 		static const long ID_STATICTEXT2;
 		static const long ID_GRID1;
 		static const long ID_BUTTON2;
@@ -56,6 +57,8 @@ class NewFrame: public wxFrame, public breakpoint_lister
 		static const long ID_BUTTON8;
 		static const long ID_BUTTON7;
 		static const long ID_CHECKBOX1;
+		static const long ID_TERM;
+		static const long ID_PANEL2;
 		static const long ID_PANEL1;
 		//*)
 
@@ -76,6 +79,8 @@ class NewFrame: public wxFrame, public breakpoint_lister
 		void OnClearOutputButtonClick(wxCommandEvent& event);
 		void OnInputBoxText(wxCommandEvent& event);
 		void OnTrimIOButtonClick(wxCommandEvent& event);
+		void OnPanel1Paint1(wxPaintEvent& event);
+		void OnClose(wxCloseEvent& event);
 		//*)
         void OnMarginClicked(wxStyledTextEvent& event);
 		DECLARE_EVENT_TABLE()

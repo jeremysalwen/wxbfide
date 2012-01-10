@@ -10,7 +10,7 @@
 #include "bf_ideApp.h"
 
 //(*AppHeaders
-#include "NewFrame.h"
+#include "IDEFrame.h"
 #include <wx/image.h>
 //*)
 #include <iostream>
@@ -23,7 +23,7 @@ bool bf_ideApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	NewFrame* Frame = new NewFrame(0);
+    	IDEFrame* Frame = new IDEFrame(0);
     	Frame->Show();
     	SetTopWindow(Frame);
     }

@@ -10,7 +10,7 @@ class bf_tableBase : public wxGridTableBase, public bf_vm {
     unsigned char *data;
     unsigned int bf_ptr;
 public:
-    bf_tableBase();
+    bf_tableBase(wxGrid* p);
     virtual ~bf_tableBase();
     int GetNumberRows();
     int GetNumberCols();
@@ -28,6 +28,9 @@ public:
     virtual void set_ptr(unsigned int);
 protected:
 private:
+    void update_ptr();
+    void update_gui();
+    wxGrid * parent;
     bool bounds_check(int i);
 };
 
