@@ -11,7 +11,7 @@ class bf_tableBase : public wxGridTableBase, public bf_vm {
     unsigned char *data;
     unsigned int bf_ptr;
 public:
-    bf_tableBase(wxGrid* p);
+    bf_tableBase(bf_table* p);
     virtual ~bf_tableBase();
     int GetNumberRows();
     int GetNumberCols();
@@ -31,7 +31,7 @@ protected:
 private:
     void update_ptr();
     void update_gui();
-    wxGrid * parent;
+    bf_table * parent;
     bool bounds_check(int i);
 };
 

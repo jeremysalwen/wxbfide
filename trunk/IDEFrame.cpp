@@ -56,7 +56,7 @@ IDEFrame::IDEFrame(wxWindow* parent,wxWindowID id): c(m)
 	SplitterWindow2 = new wxSplitterWindow(SplitterWindow1, ID_SPLITTERWINDOW2, wxPoint(114,21), wxDefaultSize, wxSP_3D, _T("ID_SPLITTERWINDOW2"));
 	SplitterWindow2->SetMinSize(wxSize(10,10));
 	SplitterWindow2->SetMinimumPaneSize(10);
-	DataGrid = new wxGrid(SplitterWindow2, ID_GRID1, wxPoint(34,15), wxDLG_UNIT(SplitterWindow2,wxSize(-1,49)), 0, _T("ID_GRID1"));
+	DataGrid = new bf_table(SplitterWindow2, ID_GRID1, wxPoint(34,15), wxDLG_UNIT(SplitterWindow2,wxSize(-1,49)), 0, _T("ID_GRID1"));
 	Term1 = new BFTerm(SplitterWindow2,&m,&c,ID_TERM,wxPoint(54,60),wxDefaultSize,_T("ID_TERM"));
 	SplitterWindow2->SplitHorizontally(DataGrid, Term1);
 	SplitterWindow1->SplitVertically(CodeEditor, SplitterWindow2);

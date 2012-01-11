@@ -14,6 +14,7 @@
 
 #include "breakpoint_lister.h"
 #include "bf_interpreter_thread.h"
+#include "bf_table.h"
 
 class IDEFrame: public wxFrame, public breakpoint_lister
 {
@@ -29,10 +30,10 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		wxButton* StopButton;
 		wxButton* PauseButton;
 		wxStyledTextCtrl* CodeEditor;
+		bf_table* DataGrid;
 		wxSplitterWindow* SplitterWindow1;
 		wxButton* ClearButton;
 		wxSplitterWindow* SplitterWindow2;
-		wxGrid* DataGrid;
 		wxButton* QuitButton;
 		BFTerm* Term1;
 		wxCheckBox* BreakPointsEnabled;

@@ -29,3 +29,6 @@ void bf_table::OnRepaint(wxCommandEvent& c) {
     GetTable()->GetView()->ProcessTableMessage(*m);
     delete m;
 }
+void bf_table::ping() {
+    std::cout <<"hello world" <<std::endl;
+}

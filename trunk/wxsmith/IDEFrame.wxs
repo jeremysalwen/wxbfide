@@ -23,14 +23,14 @@
 						<minsize>10</minsize>
 						<pos>114,21</pos>
 						<minsize>10,10</minsize>
-						<object class="wxGrid" name="ID_GRID1" variable="DataGrid" member="yes">
+						<object class="wxGrid" name="ID_GRID1" subclass="bf_table" variable="DataGrid" member="yes">
 							<pos>34,15</pos>
 							<size>-1,49d</size>
 							<minsize>-1,49d</minsize>
 							<maxsize>-1,49d</maxsize>
 						</object>
 						<object class="Custom" name="ID_TERM" subclass="BFTerm" variable="Term1" member="yes">
-							<creating_code>$(THIS) = new $(CLASS)($(PARENT),$(ID),$(POS),$(SIZE),$(NAME));</creating_code>
+							<creating_code>$(THIS) = new $(CLASS)($(PARENT),&amp;m,&amp;c,$(ID),$(POS),$(SIZE),$(NAME));</creating_code>
 							<include_file>BFTerm.h</include_file>
 							<local_include>1</local_include>
 							<style></style>

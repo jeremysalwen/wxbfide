@@ -5,7 +5,7 @@
 #include "bf_table.h"
 #include <iostream>
 
-bf_tableBase::bf_tableBase(wxGrid* p):parent(p) {
+bf_tableBase::bf_tableBase(bf_table* p):parent(p) {
     data=new unsigned char[30000];
     reset_values();
 }
@@ -101,10 +101,11 @@ void bf_tableBase::update_ptr() {
 void bf_tableBase::update_gui() {
     wxGridTableMessage* m=new wxGridTableMessage(this,wxGRIDTABLE_REQUEST_VIEW_GET_VALUES );//very poorly documented
     //GetView()->ProcessTableMessage(*m); bad bad bad unsafe... but works.
-    wxCommandEvent* e=new wxCommandEvent(RepaintEvent,IDEFrame::ID_GRID1);
-    e->SetClientData(m);
+    wxCommandEvent e(RepaintEvent,IDEFrame::ID_GRID1);
+    e.SetClientData(m);
     std::cout<<parent->GetEventHandler()<<std::endl;
     std::cout<<parent <<std::endl;
-    parent->GetEventHandler()->QueueEvent(e);
+    parent->ping();
+    parent->GetEventHandler()->ProcessEvent(e);
     parent->GetEventHandler()->QueueEvent(new wxCommandEvent(wxEVT_COMMAND_ENTER,IDEFrame::ID_GRID1));
 }
