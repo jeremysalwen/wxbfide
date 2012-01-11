@@ -1613,14 +1613,16 @@
 	<wx/frame.h>
 	<wx/stattext.h>
 
-1326195757 /home/jeremy/wx/wxbfide/bf_table.h
+1326280114 /home/jeremy/wx/wxbfide/bf_table.h
 	<wx/grid.h>
+	"IDEFrame.h"
 
-1326195743 /home/jeremy/wx/wxbfide/bf_tableBase.h
+1326272291 /home/jeremy/wx/wxbfide/bf_tableBase.h
 	<wx/grid.h>
 	<algorithm>
 	<typeinfo>
 	"bf_vm.h"
+	"IDEFrame.h"
 
 1325662969 /home/jeremy/wx/wxbfide/bf_vm.h
 
@@ -1646,14 +1648,15 @@
 	<wx/clipbrd.h>
 	<wx/dataobj.h>
 
-1326196369 source:/home/jeremy/wx/wxbfide/bf_table.cpp
+1326280208 source:/home/jeremy/wx/wxbfide/bf_table.cpp
 	"bf_table.h"
 
-1326197055 source:/home/jeremy/wx/wxbfide/bf_tableBase.cpp
+1326280393 source:/home/jeremy/wx/wxbfide/bf_tableBase.cpp
 	"bf_tableBase.h"
 	<wx/event.h>
 	<wx/grid.h>
 	"bf_table.h"
+	<iostream>
 
 1326193414 source:/home/jeremy/wx/wxbfide/NewFrame.cpp
 	"NewFrame.h"
@@ -3293,7 +3296,7 @@
 1325662969 source:/home/jeremy/wx/wxbfide/wxTerminal.cpp
 	"wxTerminal.h"
 
-1326186379 source:/home/jeremy/wx/wxbfide/bf_interpreter_thread.cpp
+1326271434 source:/home/jeremy/wx/wxbfide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
 
 1302595078 /usr/include/wx-2.9/wx/stc/stc.h
@@ -3425,7 +3428,7 @@
 	<wx/intl.h>
 	"bf_tableBase.h"
 
-1326186416 /home/jeremy/wx/wxbfide/IDEFrame.h
+1326272364 /home/jeremy/wx/wxbfide/IDEFrame.h
 	<wx/grid.h>
 	<wx/checkbox.h>
 	<wx/sizer.h>

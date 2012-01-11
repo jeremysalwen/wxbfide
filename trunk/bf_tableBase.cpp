@@ -3,8 +3,7 @@
 #include <wx/event.h>
 #include <wx/grid.h>
 #include "bf_table.h"
-
-
+#include <iostream>
 
 bf_tableBase::bf_tableBase(wxGrid* p):parent(p) {
     data=new unsigned char[30000];
@@ -94,7 +93,7 @@ void bf_tableBase::set_ptr(unsigned int i) {
 
 
 void bf_tableBase::update_ptr() {
-    wxCommandEvent* evt=new wxCommandEvent(PtrMoveEvent,wxID_ANY);
+    wxCommandEvent* evt=new wxCommandEvent(PtrMoveEvent,IDEFrame::ID_GRID1);
     evt->SetInt(bf_ptr);
     parent->GetEventHandler()->QueueEvent(evt);
 }
@@ -102,7 +101,10 @@ void bf_tableBase::update_ptr() {
 void bf_tableBase::update_gui() {
     wxGridTableMessage* m=new wxGridTableMessage(this,wxGRIDTABLE_REQUEST_VIEW_GET_VALUES );//very poorly documented
     //GetView()->ProcessTableMessage(*m); bad bad bad unsafe... but works.
-    wxCommandEvent* e=new wxCommandEvent(RepaintEvent,wxID_ANY);
+    wxCommandEvent* e=new wxCommandEvent(RepaintEvent,IDEFrame::ID_GRID1);
     e->SetClientData(m);
+    std::cout<<parent->GetEventHandler()<<std::endl;
+    std::cout<<parent <<std::endl;
     parent->GetEventHandler()->QueueEvent(e);
+    parent->GetEventHandler()->QueueEvent(new wxCommandEvent(wxEVT_COMMAND_ENTER,IDEFrame::ID_GRID1));
 }

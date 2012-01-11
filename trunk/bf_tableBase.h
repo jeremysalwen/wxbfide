@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <typeinfo>
 #include "bf_vm.h"
+#include "IDEFrame.h"
 
 class bf_tableBase : public wxGridTableBase, public bf_vm {
     unsigned char *data;

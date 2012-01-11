@@ -39,7 +39,6 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		wxButton* RunButton;
 		//*)
 
-	protected:
 
 		//(*Identifiers(IDEFrame)
 		static const long ID_CODE_EDITOR;
@@ -55,6 +54,7 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		static const long ID_BUTTON5;
 		static const long ID_BUTTON6;
 		//*)
+	protected:
 
 	private:
         wxMutex m;

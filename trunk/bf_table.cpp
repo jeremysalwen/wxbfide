@@ -1,5 +1,13 @@
 #include "bf_table.h"
 
+wxDEFINE_EVENT(RepaintEvent, wxCommandEvent);
+wxDEFINE_EVENT(PtrMoveEvent, wxCommandEvent);
+
+wxBEGIN_EVENT_TABLE(bf_table, wxGrid)
+    EVT_COMMAND(IDEFrame::ID_GRID1,RepaintEvent,bf_table::OnRepaint)
+    EVT_COMMAND(IDEFrame::ID_GRID1,PtrMoveEvent,bf_table::OnPtrMove)
+    EVT_COMMAND_ENTER(IDEFrame::ID_GRID1,bf_table::OnRepaint)
+wxEND_EVENT_TABLE()
 
 
 bf_table::bf_table(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name):wxGrid(parent,id,pos,size,style,name) {
@@ -21,8 +29,3 @@ void bf_table::OnRepaint(wxCommandEvent& c) {
     GetTable()->GetView()->ProcessTableMessage(*m);
     delete m;
 }
-
-wxBEGIN_EVENT_TABLE(bf_table, wxGrid)
-    EVT_COMMAND(wxID_ANY,PtrMoveEvent,bf_table::OnPtrMove)
-    EVT_COMMAND(wxID_ANY,RepaintEvent,bf_table::OnRepaint)
-wxEND_EVENT_TABLE()

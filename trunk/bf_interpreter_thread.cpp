@@ -75,7 +75,6 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
 void bf_interpreter_thread::processStep()
 {
     brace_entry b;
-    int c;
     switch (*program_index)
     {
     case '+':
@@ -91,7 +90,7 @@ void bf_interpreter_thread::processStep()
         vm->dec_ptr();
         break;
     case ',':
-        char c;
+        unsigned char c;
         {
             wxMutexLocker l(*mutex);
             while(term->empty()) {
