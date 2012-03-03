@@ -2,8 +2,6 @@
 #define BF_TABLE_H
 #include <wx/grid.h>
 
-#include "IDEFrame.h"
-
 
 class bf_table : public wxGrid {
 public:

@@ -17,7 +17,7 @@ BFTerm::~BFTerm()
 void BFTerm::OnUserInput(wxString str)
 {
     wxMutexLocker l(*mutex);
-    for(int i=0; i<str.size(); i++)
+    for(unsigned int i=0; i<str.size(); i++)
     {
         inputbuffer.push(str.GetChar(i));
     }

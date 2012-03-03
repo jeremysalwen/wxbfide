@@ -6,7 +6,6 @@ class bf_interpreter_thread;
 #include <wx/thread.h>
 #include <iostream>
 #include <stack>
-#include "NewFrame.h"
 #include "wx/string.h"
 #include "bf_vm.h"
 #include "breakpoint_lister.h"

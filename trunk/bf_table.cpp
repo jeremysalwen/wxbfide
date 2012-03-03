@@ -1,5 +1,7 @@
 #include "bf_table.h"
 
+#include "IDEFrame.h"
+
 wxDEFINE_EVENT(RepaintEvent, wxCommandEvent);
 wxDEFINE_EVENT(PtrMoveEvent, wxCommandEvent);
 
