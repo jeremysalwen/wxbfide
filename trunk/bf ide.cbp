@@ -38,8 +38,6 @@
 		<Unit filename="BFTerm.h" />
 		<Unit filename="IDEFrame.cpp" />
 		<Unit filename="IDEFrame.h" />
-		<Unit filename="NewFrame.cpp" />
-		<Unit filename="NewFrame.h" />
 		<Unit filename="bf_ideApp.cpp" />
 		<Unit filename="bf_ideApp.h" />
 		<Unit filename="bf_interpreter.cpp" />
@@ -51,6 +49,7 @@
 		<Unit filename="bf_tableBase.h" />
 		<Unit filename="bf_vm.h" />
 		<Unit filename="breakpoint_lister.h" />
+		<Unit filename="gmon.out" />
 		<Unit filename="terminalWx/GTerm/TextManager.cpp" />
 		<Unit filename="terminalWx/GTerm/TextManager.h" />
 		<Unit filename="terminalWx/GTerm/actions.cpp" />
@@ -66,8 +65,6 @@
 		<Unit filename="terminalWx/terminalinputevent.h" />
 		<Unit filename="terminalWx/terminalwx.cpp" />
 		<Unit filename="terminalWx/terminalwx.h" />
-		<Unit filename="wxTerminal.cpp" />
-		<Unit filename="wxTerminal.h" />
 		<Unit filename="wxsmith/IDEFrame.wxs" />
 		<Extensions>
 			<envvars />

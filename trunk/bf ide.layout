@@ -1,79 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="BFTerm.cpp" open="1" top="0" tabpos="16">
-		<Cursor position="307" topLine="0" />
+	<File name="BFTerm.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="392" topLine="9" />
 	</File>
-	<File name="BFTerm.h" open="1" top="0" tabpos="17">
-		<Cursor position="378" topLine="0" />
+	<File name="BFTerm.h" open="0" top="0" tabpos="0">
+		<Cursor position="566" topLine="9" />
 	</File>
-	<File name="IDEFrame.cpp" open="1" top="0" tabpos="14">
-		<Cursor position="5585" topLine="86" />
+	<File name="IDEFrame.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="6950" topLine="130" />
 	</File>
-	<File name="IDEFrame.h" open="1" top="0" tabpos="15">
-		<Cursor position="1792" topLine="37" />
+	<File name="IDEFrame.h" open="1" top="0" tabpos="5">
+		<Cursor position="596" topLine="17" />
 	</File>
-	<File name="NewFrame.cpp" open="1" top="0" tabpos="22">
-		<Cursor position="4602" topLine="78" />
-	</File>
-	<File name="NewFrame.h" open="1" top="0" tabpos="11">
-		<Cursor position="1080" topLine="34" />
-	</File>
-	<File name="bf_ideApp.cpp" open="1" top="0" tabpos="5">
+	<File name="bf_ideApp.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="748" topLine="0" />
 	</File>
-	<File name="bf_ideApp.h" open="1" top="0" tabpos="4">
-		<Cursor position="425" topLine="0" />
-	</File>
-	<File name="bf_interpreter.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="0" topLine="0" />
+	<File name="bf_ideApp.h" open="1" top="0" tabpos="6">
+		<Cursor position="0" topLine="6" />
 	</File>
 	<File name="bf_interpreter_thread.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="413" topLine="0" />
+		<Cursor position="1020" topLine="31" />
 	</File>
-	<File name="bf_interpreter_thread.h" open="1" top="0" tabpos="2">
-		<Cursor position="269" topLine="0" />
+	<File name="bf_interpreter_thread.h" open="1" top="0" tabpos="9">
+		<Cursor position="862" topLine="25" />
 	</File>
-	<File name="bf_table.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="634" topLine="0" />
+	<File name="bf_table.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="334" topLine="2" />
 	</File>
-	<File name="bf_table.h" open="1" top="0" tabpos="8">
-		<Cursor position="85" topLine="0" />
-	</File>
-	<File name="bf_tableBase.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="936" topLine="51" />
-	</File>
-	<File name="bf_tableBase.h" open="1" top="0" tabpos="7">
-		<Cursor position="213" topLine="0" />
-	</File>
-	<File name="bf_vm.h" open="1" top="0" tabpos="3">
-		<Cursor position="468" topLine="0" />
-	</File>
-	<File name="breakpoint_lister.h" open="1" top="0" tabpos="12">
-		<Cursor position="175" topLine="0" />
+	<File name="bf_tableBase.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1605" topLine="75" />
 	</File>
 	<File name="terminalWx/GTerm/actions.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5378" topLine="270" />
 	</File>
-	<File name="terminalWx/GTerm/gterm.cpp" open="1" top="0" tabpos="13">
+	<File name="terminalWx/GTerm/gterm.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="2198" topLine="57" />
 	</File>
 	<File name="terminalWx/GTerm/gterm.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="7478" topLine="294" />
 	</File>
-	<File name="terminalWx/taTelnet/wxterm.h" open="1" top="1" tabpos="20">
-		<Cursor position="1216" topLine="19" />
+	<File name="terminalWx/terminalwx.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="1952" topLine="54" />
 	</File>
-	<File name="terminalWx/terminalwx.cpp" open="1" top="0" tabpos="19">
-		<Cursor position="0" topLine="47" />
-	</File>
-	<File name="terminalWx/terminalwx.h" open="1" top="0" tabpos="18">
-		<Cursor position="1900" topLine="30" />
-	</File>
-	<File name="wxTerminal.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1207" topLine="29" />
-	</File>
-	<File name="wxTerminal.h" open="1" top="0" tabpos="1">
-		<Cursor position="684" topLine="0" />
+	<File name="terminalWx/terminalwx.h" open="0" top="0" tabpos="20">
+		<Cursor position="1900" topLine="43" />
 	</File>
 </CodeBlocks_layout_file>

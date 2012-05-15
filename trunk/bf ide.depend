@@ -1613,9 +1613,8 @@
 	<wx/frame.h>
 	<wx/stattext.h>
 
-1326285140 /home/jeremy/wx/wxbfide/bf_table.h
+1326360920 /home/jeremy/wx/wxbfide/bf_table.h
 	<wx/grid.h>
-	"IDEFrame.h"
 
 1326283220 /home/jeremy/wx/wxbfide/bf_tableBase.h
 	<wx/grid.h>
@@ -1626,7 +1625,7 @@
 
 1325662969 /home/jeremy/wx/wxbfide/bf_vm.h
 
-1326285217 /home/jeremy/wx/wxbfide/bf_interpreter_thread.h
+1337077481 /home/jeremy/wx/wxbfide/bf_interpreter_thread.h
 	<wx/thread.h>
 	<iostream>
 	<stack>
@@ -1634,6 +1633,7 @@
 	"bf_vm.h"
 	"breakpoint_lister.h"
 	"BFTerm.h"
+	"IDEFrame.h"
 
 1325842775 /home/jeremy/wx/wxbfide/breakpoint_lister.h
 
@@ -1647,10 +1647,11 @@
 	<wx/clipbrd.h>
 	<wx/dataobj.h>
 
-1326283049 source:/home/jeremy/wx/wxbfide/bf_table.cpp
+1326361166 source:/home/jeremy/wx/wxbfide/bf_table.cpp
 	"bf_table.h"
+	"IDEFrame.h"
 
-1326282580 source:/home/jeremy/wx/wxbfide/bf_tableBase.cpp
+1336951144 source:/home/jeremy/wx/wxbfide/bf_tableBase.cpp
 	"bf_tableBase.h"
 	<wx/event.h>
 	<wx/grid.h>
@@ -3295,7 +3296,7 @@
 1325662969 source:/home/jeremy/wx/wxbfide/wxTerminal.cpp
 	"wxTerminal.h"
 
-1326271434 source:/home/jeremy/wx/wxbfide/bf_interpreter_thread.cpp
+1337075896 source:/home/jeremy/wx/wxbfide/bf_interpreter_thread.cpp
 	"bf_interpreter_thread.h"
 
 1308140108 /usr/include/wx-2.9/wx/stc/stc.h
@@ -3416,18 +3417,18 @@
 1326186052 source:/home/jeremy/wx/wxbfide/BFTerm.cpp
 	"BFTerm.h"
 
-1326186036 /home/jeremy/wx/wxbfide/BFTerm.h
+1337055084 /home/jeremy/wx/wxbfide/BFTerm.h
 	"terminalWx/terminalwx.h"
 	<wx/thread.h>
 	<queue>
 
-1326284057 source:/home/jeremy/wx/wxbfide/IDEFrame.cpp
+1337076322 source:/home/jeremy/wx/wxbfide/IDEFrame.cpp
 	"IDEFrame.h"
 	<wx/string.h>
 	<wx/intl.h>
 	"bf_tableBase.h"
 
-1326285035 /home/jeremy/wx/wxbfide/IDEFrame.h
+1337077537 /home/jeremy/wx/wxbfide/IDEFrame.h
 	<wx/grid.h>
 	<wx/checkbox.h>
 	<wx/sizer.h>
@@ -3448,55 +3449,15 @@
 	"wx/window.h"
 	"wx/containr.h"
 
-1330801590 source:/home/jeremy/c/wxbfide/BFTerm.cpp
-	"BFTerm.h"
-
-1330800881 /home/jeremy/c/wxbfide/BFTerm.h
-	"terminalWx/terminalwx.h"
+1337032423 /home/jeremy/wx/wxbfide/include/BFTerm.h
+	"terminalwx.h"
 	<wx/thread.h>
 	<queue>
 
-1330800881 /home/jeremy/c/wxbfide/terminalWx/terminalwx.h
-	"taTelnet/wxterm.h"
-	"terminalinputevent.h"
+1325662969 /home/jeremy/wx/wxbfide/include/bf_ideApp.h
+	<wx/app.h>
 
-1330800881 /home/jeremy/c/wxbfide/terminalWx/taTelnet/wxterm.h
-	"../GTerm/gterm.hpp"
-	<wx/dcmemory.h>
-	<wx/timer.h>
-	<wx/colour.h>
-	<wx/event.h>
-	<wx/font.h>
-	<wx/gdicmn.h>
-	<wx/string.h>
-	<wx/window.h>
-
-1330800881 /home/jeremy/c/wxbfide/terminalWx/GTerm/gterm.hpp
-	<string.h>
-	<stdlib.h>
-	<stdio.h>
-	<vector>
-	<queue>
-	<deque>
-	<string>
-	"TextManager.h"
-
-1330800881 /home/jeremy/c/wxbfide/terminalWx/GTerm/TextManager.h
-	<vector>
-	<deque>
-	<string>
-
-1330800881 /home/jeremy/c/wxbfide/terminalWx/terminalinputevent.h
-	<wx/process.h>
-	<wx/event.h>
-
-1330800881 source:/home/jeremy/c/wxbfide/IDEFrame.cpp
-	"IDEFrame.h"
-	<wx/string.h>
-	<wx/intl.h>
-	"bf_tableBase.h"
-
-1330801711 /home/jeremy/c/wxbfide/IDEFrame.h
+1337032453 /home/jeremy/wx/wxbfide/include/IDEFrame.h
 	<wx/grid.h>
 	<wx/checkbox.h>
 	<wx/sizer.h>
@@ -3508,10 +3469,11 @@
 	"breakpoint_lister.h"
 	"bf_interpreter_thread.h"
 	"bf_table.h"
+	"vmEventHander.h"
 
-1330800881 /home/jeremy/c/wxbfide/breakpoint_lister.h
+1325842775 /home/jeremy/wx/wxbfide/include/breakpoint_lister.h
 
-1330801677 /home/jeremy/c/wxbfide/bf_interpreter_thread.h
+1336952371 /home/jeremy/wx/wxbfide/include/bf_interpreter_thread.h
 	<wx/thread.h>
 	<iostream>
 	<stack>
@@ -3520,104 +3482,25 @@
 	"breakpoint_lister.h"
 	"BFTerm.h"
 
-1330800881 /home/jeremy/c/wxbfide/bf_vm.h
+1325662969 /home/jeremy/wx/wxbfide/include/bf_vm.h
 
-1330801745 /home/jeremy/c/wxbfide/bf_table.h
+1326360920 /home/jeremy/wx/wxbfide/include/bf_table.h
 	<wx/grid.h>
 
-1330800881 /home/jeremy/c/wxbfide/bf_tableBase.h
+1337032025 /home/jeremy/wx/wxbfide/include/vmEventHander.h
+
+1326283220 /home/jeremy/wx/wxbfide/include/bf_tableBase.h
 	<wx/grid.h>
 	<algorithm>
 	<typeinfo>
 	"bf_vm.h"
 	"IDEFrame.h"
 
-1330800881 source:/home/jeremy/c/wxbfide/bf_ideApp.cpp
-	"bf_ideApp.h"
-	"IDEFrame.h"
-	<wx/image.h>
-	<iostream>
-
-1330800881 /home/jeremy/c/wxbfide/bf_ideApp.h
-	<wx/app.h>
-
-1330800881 source:/home/jeremy/c/wxbfide/bf_interpreter.cpp
-
-1330800881 source:/home/jeremy/c/wxbfide/bf_interpreter_thread.cpp
-	"bf_interpreter_thread.h"
-
-1330801760 source:/home/jeremy/c/wxbfide/bf_table.cpp
-	"bf_table.h"
-	"IDEFrame.h"
-
-1330800881 source:/home/jeremy/c/wxbfide/bf_tableBase.cpp
-	"bf_tableBase.h"
-	<wx/event.h>
-	<wx/grid.h>
-	"bf_table.h"
-	<iostream>
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/TextManager.cpp
-	<wx/log.h>
-	"TextManager.h"
-	<iostream>
-	<stdlib.h>
-	<wx/wx.h>
-	<wx/file.h>
-	<wx/dcmemory.h>
-	<wx/image.h>
-	"gterm.hpp"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/actions.cpp
-	"gterm.hpp"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/gterm.cpp
-	"gterm.hpp"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/keytrans.cpp
-	"gterm.hpp"
-	<ctype.h>
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/states.cpp
-	"gterm.hpp"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/utils.cpp
-	"gterm.hpp"
-	<wx/string.h>
-	<wx/log.h>
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/GTerm/vt52_states.cpp
-	"gterm.hpp"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/taTelnet/wxterm.cpp
-	"wx/wxprec.h"
-	<wx/timer.h>
-	<wx/event.h>
-	<wx/bitmap.h>
-	<wx/brush.h>
-	<wx/cursor.h>
-	<wx/dcclient.h>
-	<wx/log.h>
-	<wx/pen.h>
-	<wx/settings.h>
-	<wx/utils.h>
-	<ctype.h>
-	"../GTerm/gterm.hpp"
-	"wxterm.h"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/terminalinputevent.cpp
-	"terminalinputevent.h"
-
-1330800881 source:/home/jeremy/c/wxbfide/terminalWx/terminalwx.cpp
-	"terminalwx.h"
-	<wx/log.h>
-
-1330800881 source:/home/jeremy/c/wxbfide/wxTerminal.cpp
-	"wxTerminal.h"
-
-1330800881 /home/jeremy/c/wxbfide/wxTerminal.h
+1325662969 /home/jeremy/wx/wxbfide/include/wxTerminal.h
 	<sstream>
 	<wx/textctrl.h>
 	<wx/clipbrd.h>
 	<wx/dataobj.h>
+
+1337032025 /home/jeremy/wx/wxbfide/vmEventHander.h
 

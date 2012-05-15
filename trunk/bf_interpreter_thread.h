@@ -10,8 +10,11 @@ class bf_interpreter_thread;
 #include "bf_vm.h"
 #include "breakpoint_lister.h"
 #include "BFTerm.h"
+#include "IDEFrame.h"
 
-enum runmode_type {stopped,running,paused,stepped};
+class IDEFrame;
+
+enum runmode_type {stopped,running,paused,stepped,continued};
 
 typedef struct {
     const wxChar* location;
@@ -20,16 +23,18 @@ typedef struct {
 class bf_interpreter_thread : public wxThread
 {
     public:
-        bf_interpreter_thread(wxMutex* mutex, wxCondition* cond, BFTerm* term,const wxString,bf_vm*, breakpoint_lister*);
+        bf_interpreter_thread(wxEvtHandler*, breakpoint_lister*, wxMutex*,wxCondition*, BFTerm*,const wxString,bf_vm*);
         virtual ~bf_interpreter_thread();
         virtual wxThread::ExitCode Entry();
         void processStep();
         void reset(const wxChar*);
         void SetRunmode(runmode_type);
+        int getProgramIndex();
     protected:
+    wxEvtHandler* evt;
     wxMutex* mutex;
     wxCondition* unpaused_condition;
-        runmode_type runmode;
+    runmode_type runmode;
     void skip_to_corresponding_brace();
     bf_vm * vm;
     wxString program;

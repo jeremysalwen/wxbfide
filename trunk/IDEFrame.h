@@ -16,6 +16,9 @@
 #include "bf_interpreter_thread.h"
 #include "bf_table.h"
 
+DECLARE_EVENT_TYPE(EVT_VM_BREAKPOINTED, -1 )
+DECLARE_EVENT_TYPE(EVT_VM_FINISHED, -1 )
+
 class IDEFrame: public wxFrame, public breakpoint_lister
 {
 	public:
@@ -32,6 +35,7 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		wxStyledTextCtrl* CodeEditor;
 		bf_table* DataGrid;
 		wxSplitterWindow* SplitterWindow1;
+		wxButton* ContinueButton;
 		wxButton* ClearButton;
 		wxSplitterWindow* SplitterWindow2;
 		wxButton* QuitButton;
@@ -47,13 +51,14 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		static const long ID_TERM;
 		static const long ID_SPLITTERWINDOW2;
 		static const long ID_SPLITTERWINDOW1;
-		static const long ID_BUTTON1;
-		static const long ID_CHECKBOX1;
-		static const long ID_BUTTON2;
-		static const long ID_BUTTON3;
-		static const long ID_BUTTON4;
-		static const long ID_BUTTON5;
-		static const long ID_BUTTON6;
+		static const long ID_RUN_BUTTON;
+		static const long ID_BREAKPOINT_CHECKBOX;
+		static const long ID_STOP_BUTTON;
+		static const long ID_PAUSE_BUTTON;
+		static const long ID_CONTINUE_BUTTON;
+		static const long ID_STEP_BUTTON;
+		static const long ID_CLEARIO_BUTTON;
+		static const long ID_QUIT_BUTTON;
 		//*)
 	protected:
 
@@ -71,9 +76,13 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		void OnStepButtonClick(wxCommandEvent& event);
 		void OnQuitButtonClick(wxCommandEvent& event);
 		void OnRunButtonClick(wxCommandEvent& event);
+		void OnContinueButtonClick(wxCommandEvent& event);
 		//*)
 		void reset_processing_thread();
         void OnMarginClicked(wxStyledTextEvent& event);
+        void OnVmBreakpoint(wxCommandEvent&);
+        void OnVmFinished(wxCommandEvent&);
+        void clearStepCursor();
 		DECLARE_EVENT_TABLE()
 };
 

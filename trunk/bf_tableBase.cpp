@@ -5,8 +5,10 @@
 #include "bf_table.h"
 #include <iostream>
 
+#define NUMCELLS 30000
+
 bf_tableBase::bf_tableBase(bf_table* p):parent(p) {
-    data=new unsigned char[30000];
+    data=new unsigned char[NUMCELLS];
     reset_values();
 }
 
@@ -18,7 +20,7 @@ int bf_tableBase::GetNumberRows() {
     return 3;
 }
 int bf_tableBase::GetNumberCols() {
-    return 30000;
+    return NUMCELLS;
 }
 bool bf_tableBase::IsEmptyCell(int row,int col) {
     if (!bounds_check(col)) {
@@ -76,9 +78,15 @@ void bf_tableBase::set_cell(unsigned char value) {
 }
 void bf_tableBase::inc_ptr() {
     bf_ptr++;
+    if(bf_ptr==NUMCELLS) {
+    bf_ptr=0;
+    }
     update_ptr();
 }
 void bf_tableBase::dec_ptr() {
+    if(bf_ptr==0) {
+        bf_ptr=NUMCELLS;
+    }
     bf_ptr--;
     update_ptr();
 }
@@ -101,11 +109,10 @@ void bf_tableBase::update_ptr() {
 void bf_tableBase::update_gui() {
     wxGridTableMessage* m=new wxGridTableMessage(this,wxGRIDTABLE_REQUEST_VIEW_GET_VALUES );//very poorly documented
     //GetView()->ProcessTableMessage(*m); bad bad bad unsafe... but works.
-    wxCommandEvent e(RepaintEvent,IDEFrame::ID_GRID1);
-    e.SetClientData(m);
+    wxCommandEvent* e=new wxCommandEvent(RepaintEvent,IDEFrame::ID_GRID1);
+    e->SetClientData(m);
     std::cout<<parent->GetEventHandler()<<std::endl;
     std::cout<<parent <<std::endl;
-    parent->ping();
-    parent->GetEventHandler()->ProcessEvent(e);
-    parent->GetEventHandler()->QueueEvent(new wxCommandEvent(wxEVT_COMMAND_ENTER,IDEFrame::ID_GRID1));
+    parent->GetEventHandler()->QueueEvent(e);
+    //parent->GetEventHandler()->QueueEvent(new wxCommandEvent(wxEVT_COMMAND_ENTER,IDEFrame::ID_GRID1));
 }

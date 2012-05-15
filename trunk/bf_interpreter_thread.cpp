@@ -1,12 +1,11 @@
 #include "bf_interpreter_thread.h"
 
-bf_interpreter_thread::bf_interpreter_thread(wxMutex* mutex, wxCondition* condition, BFTerm* term,const wxString prog, bf_vm * vm,breakpoint_lister* lister):wxThread(wxTHREAD_DETACHED),mutex(mutex),unpaused_condition(condition)
+bf_interpreter_thread::bf_interpreter_thread(wxEvtHandler* events,breakpoint_lister* lister, wxMutex* m, wxCondition* c, BFTerm* term,const wxString prog, bf_vm * vm):wxThread(wxTHREAD_DETACHED),evt(events),breakpoints(lister),mutex(m),unpaused_condition(c)
 {
     this->term=term;
     this->program=prog;
     program_index=program.c_str();
     this->vm=vm;
-    this->breakpoints=lister;
     linenumber=1;
     runmode=stopped;
     Create();
@@ -22,20 +21,30 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
     while (true)
     {
         runmode_type tmp;
+        bool finished=false;
         {
             wxMutexLocker l(*mutex);
-            mutex->Lock();
-
             if (!*program_index)
             {
                 runmode=stopped;
+                finished=true;
             }
             tmp=runmode;
+        }
+        if(finished) {
+            wxCommandEvent e(EVT_VM_FINISHED,wxID_ANY);
+            evt->AddPendingEvent(e);
         }
         switch (tmp)
         {
         case stepped:
             processStep();
+            {
+            wxCommandEvent ev(EVT_VM_BREAKPOINTED,wxID_ANY);
+            ev.SetInt(getProgramIndex());
+            evt->AddPendingEvent(ev);
+            }
+
             {
                 wxMutexLocker l(*mutex);
 
@@ -44,19 +53,26 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
             }
             break;
         case running:
-            bool breakpointed;
+            if (breakpoints->HasBreakpoint(linenumber))
             {
-                wxMutexLocker l(*mutex);
-                breakpointed=breakpoints->HasBreakpoint(linenumber);
-            }
-            if (breakpointed)
-            {
-                wxMutexLocker l(*mutex);
-                runmode=paused;
+                {
+                    wxMutexLocker l(*mutex);
+                    runmode=paused;
+                }
+                wxCommandEvent e(EVT_VM_BREAKPOINTED,wxID_ANY);
+                e.SetInt(getProgramIndex());
+                evt->AddPendingEvent(e);
             }
             else
             {
                 processStep();
+            }
+            break;
+        case continued:
+            processStep();
+            {
+                wxMutexLocker l(*mutex);
+                runmode=running;
             }
             break;
         case stopped:
@@ -171,7 +187,7 @@ void bf_interpreter_thread::reset(const wxChar* prog)
     vm->reset_values();
     program=prog;
     program_index=program.c_str();
-    linenumber=1;
+    linenumber=0;
     runmode=stopped;
 }
 
@@ -180,4 +196,7 @@ void bf_interpreter_thread::SetRunmode(runmode_type mode)
     wxMutexLocker l(*mutex);
     runmode=mode;
     unpaused_condition->Broadcast();
+}
+int bf_interpreter_thread::getProgramIndex() {
+    return program_index-program.c_str();
 }

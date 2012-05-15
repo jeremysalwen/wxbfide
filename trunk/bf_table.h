@@ -9,7 +9,6 @@ public:
     virtual ~bf_table();
 
     void OnRepaint(wxCommandEvent& evt);
-    void ping();
 protected:
 private:
     void OnPtrMove(wxCommandEvent& evt);
