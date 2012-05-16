@@ -1,3 +1,21 @@
+ /*
+  *  WxBfIDE - A cross-platform brainfuck IDE
+  *  Copyright (C) 2008-2012  Jeremy Salwen
+  *
+  *  This program is free software: you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+  *  the Free Software Foundation, either version 3 of the License, or
+  *  (at your option) any later version.
+  *
+  *  This program is distributed in the hope that it will be useful,
+  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  *  GNU General Public License for more details.
+  *
+  *  You should have received a copy of the GNU General Public License
+  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+
 #include "IDEFrame.h"
 
 //(*InternalHeaders(IDEFrame)
@@ -48,11 +66,6 @@ BEGIN_EVENT_TABLE(IDEFrame,wxFrame)
     EVT_COMMAND(wxID_ANY,EVT_VM_FINISHED,IDEFrame::OnVmFinished)
 END_EVENT_TABLE()
 
-/*
-   This is taken from scintilla documentation,
-   but isn't properly copied in wxStyledTextCtrl
-*/
-#define SCI_STYLE_LINENUMBER 33
 
 IDEFrame::IDEFrame(wxWindow* parent,wxWindowID id): c(m),
     OpenDialog(this, _("Open File"), wxEmptyString, wxEmptyString,

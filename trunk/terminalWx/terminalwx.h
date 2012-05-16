@@ -1,3 +1,8 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/gdicmn.h>
+#include <wx/string.h>
+#include <wx/window.h>
+// *** END ***
 /*
 TerminalWx - A wxWidgets terminal widget
 Copyright (C) 2012 Jeremy Salwen
