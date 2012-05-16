@@ -13,9 +13,30 @@ bf_interpreter_thread::bf_interpreter_thread(wxEvtHandler* events,breakpoint_lis
 
 bf_interpreter_thread::~bf_interpreter_thread()
 {
-    //Don't manage streams.
+
 }
 
+bool bf_interpreter_thread::skip_comments()
+{
+    while(true)
+    {
+        switch(*program_index)
+        {
+        case '+':
+        case '-':
+        case '<':
+        case '>':
+        case ',':
+        case '.':
+        case '[':
+        case ']':
+            return true;
+        case '\0':
+            return false;
+        }
+        program_index++;
+    }
+}
 wxThread::ExitCode bf_interpreter_thread::Entry()
 {
     while (true)
@@ -31,7 +52,8 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
             }
             tmp=runmode;
         }
-        if(finished) {
+        if(finished)
+        {
             wxCommandEvent e(EVT_VM_FINISHED,wxID_ANY);
             evt->AddPendingEvent(e);
         }
@@ -39,17 +61,33 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
         {
         case stepped:
             processStep();
+            if(skip_comments())
             {
-            wxCommandEvent ev(EVT_VM_BREAKPOINTED,wxID_ANY);
-            ev.SetInt(getProgramIndex());
-            evt->AddPendingEvent(ev);
+                {
+                    wxCommandEvent ev(EVT_VM_BREAKPOINTED,wxID_ANY);
+                    ev.SetInt(getProgramIndex());
+                    evt->AddPendingEvent(ev);
+                }
+
+                {
+                    wxMutexLocker l(*mutex);
+
+                    runmode=stopped;
+                    unpaused_condition->Wait();
+                }
             }
-
+            else
             {
-                wxMutexLocker l(*mutex);
+                {
+                    wxCommandEvent ev(EVT_VM_FINISHED,wxID_ANY);
+                    evt->AddPendingEvent(ev);
+                }
+                {
+                    wxMutexLocker l(*mutex);
 
-                runmode=paused;
-                unpaused_condition->Wait();
+                    runmode=stopped;
+                    unpaused_condition->Wait();
+                }
             }
             break;
         case running:
@@ -57,11 +95,19 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
             {
                 {
                     wxMutexLocker l(*mutex);
-                    runmode=paused;
+                    runmode=stopped;
                 }
-                wxCommandEvent e(EVT_VM_BREAKPOINTED,wxID_ANY);
-                e.SetInt(getProgramIndex());
-                evt->AddPendingEvent(e);
+                if(skip_comments())
+                {
+                    wxCommandEvent e(EVT_VM_BREAKPOINTED,wxID_ANY);
+                    e.SetInt(getProgramIndex());
+                    evt->AddPendingEvent(e);
+                }
+                else
+                {
+                    wxCommandEvent e(EVT_VM_FINISHED,wxID_ANY);
+                    evt->AddPendingEvent(e);
+                }
             }
             else
             {
@@ -76,12 +122,22 @@ wxThread::ExitCode bf_interpreter_thread::Entry()
             }
             break;
         case stopped:
-        case paused:
-        {
-            wxMutexLocker l(*mutex);
-            unpaused_condition->Wait();
-            break;
-        }
+            if(skip_comments())
+            {
+                wxCommandEvent e(EVT_VM_BREAKPOINTED,wxID_ANY);
+                e.SetInt(getProgramIndex());
+                evt->AddPendingEvent(e);
+            }
+            else
+            {
+                wxCommandEvent e(EVT_VM_FINISHED,wxID_ANY);
+                evt->AddPendingEvent(e);
+            }
+            {
+                wxMutexLocker l(*mutex);
+                unpaused_condition->Wait();
+                break;
+            }
         }
     }
     return 0;
@@ -109,8 +165,10 @@ void bf_interpreter_thread::processStep()
         unsigned char c;
         {
             wxMutexLocker l(*mutex);
-            while(term->empty()) {
-                if(runmode==paused || runmode==stopped) {
+            while(term->empty())
+            {
+                if(runmode==stopped)
+                {
                     return;
                 }
                 unpaused_condition->Wait();
@@ -197,6 +255,7 @@ void bf_interpreter_thread::SetRunmode(runmode_type mode)
     runmode=mode;
     unpaused_condition->Broadcast();
 }
-int bf_interpreter_thread::getProgramIndex() {
+int bf_interpreter_thread::getProgramIndex()
+{
     return program_index-program.c_str();
 }

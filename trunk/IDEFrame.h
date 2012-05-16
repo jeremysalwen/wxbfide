@@ -7,11 +7,13 @@
 #include <wx/sizer.h>
 #include <wx/stc/stc.h>
 #include <wx/button.h>
+#include <wx/menu.h>
 #include <wx/splitter.h>
 #include "BFTerm.h"
 #include <wx/frame.h>
 //*)
 
+#include <wx/filedlg.h>
 #include "breakpoint_lister.h"
 #include "bf_interpreter_thread.h"
 #include "bf_table.h"
@@ -32,16 +34,29 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		wxButton* StepButton;
 		wxButton* StopButton;
 		wxButton* PauseButton;
+		wxMenuItem* MenuSave;
+		wxMenuItem* MenuUndo;
 		wxStyledTextCtrl* CodeEditor;
+		wxMenu* Menu3;
+		wxMenuItem* MenuNew;
 		bf_table* DataGrid;
+		wxMenu* FileMenu;
+		wxMenuItem* MenuPaste;
 		wxSplitterWindow* SplitterWindow1;
+		wxMenuItem* MenuQuit;
 		wxButton* ContinueButton;
 		wxButton* ClearButton;
 		wxSplitterWindow* SplitterWindow2;
-		wxButton* QuitButton;
+		wxMenuItem* MenuCopy;
+		wxMenuItem* MenuOpen;
 		BFTerm* Term1;
 		wxCheckBox* BreakPointsEnabled;
+		wxMenuBar* MenuBar1;
+		wxMenuItem* MenuSaveAs;
 		wxButton* RunButton;
+		wxMenu* Menu2;
+		wxMenuItem* MenuCut;
+		wxMenuItem* MenuAbout;
 		//*)
 
 
@@ -57,8 +72,18 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		static const long ID_PAUSE_BUTTON;
 		static const long ID_CONTINUE_BUTTON;
 		static const long ID_STEP_BUTTON;
-		static const long ID_CLEARIO_BUTTON;
-		static const long ID_QUIT_BUTTON;
+		static const long ID_CLEAR_TERMINAL_BUTTON;
+		static const long ID_MENU_NEW;
+		static const long ID_MENU_OPEN;
+		static const long ID_MENU_SAVE;
+		static const long ID_MENUITEM4;
+		static const long ID_MENU_QUIT;
+		static const long ID_MENU_UNDO;
+		static const long ID_MENU_REDO;
+		static const long ID_MENU_COPY;
+		static const long ID_MENU_CUT;
+		static const long ID_MENU_PASTE;
+		static const long ID_MENU_ABOUT;
 		//*)
 	protected:
 
@@ -66,6 +91,10 @@ class IDEFrame: public wxFrame, public breakpoint_lister
         wxMutex m;
         wxCondition c;
 		bf_interpreter_thread * processing_thread;
+
+		wxString CurrentDocPath;
+        wxFileDialog OpenDialog;
+        wxFileDialog SaveDialog;
 
 		//(*Handlers(IDEFrame)
 		void OnClose(wxCloseEvent& event);
@@ -77,12 +106,23 @@ class IDEFrame: public wxFrame, public breakpoint_lister
 		void OnQuitButtonClick(wxCommandEvent& event);
 		void OnRunButtonClick(wxCommandEvent& event);
 		void OnContinueButtonClick(wxCommandEvent& event);
+		void OnMenuNewSelected(wxCommandEvent& event);
+		void OnMenuOpenSelected(wxCommandEvent& event);
+		void OnMenuSaveSelected(wxCommandEvent& event);
+		void OnMenuSaveAsSelected(wxCommandEvent& event);
+		void OnMenuUndoSelected(wxCommandEvent& event);
+		void OnMenuRedoSelected(wxCommandEvent& event);
+		void OnMenuCutSelected(wxCommandEvent& event);
+		void OnMenuCopySelected(wxCommandEvent& event);
+		void OnMenuPasteSelected(wxCommandEvent& event);
+		void OnMenuAboutSelected(wxCommandEvent& event);
 		//*)
 		void reset_processing_thread();
         void OnMarginClicked(wxStyledTextEvent& event);
         void OnVmBreakpoint(wxCommandEvent&);
         void OnVmFinished(wxCommandEvent&);
         void clearStepCursor();
+        bool confirmUnsaved();
 		DECLARE_EVENT_TABLE()
 };
 

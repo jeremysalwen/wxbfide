@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="IDEFrame">
-		<title>Brainfuck IDE</title>
+		<title>Brainfuck IDE - New File</title>
 		<id_arg>0</id_arg>
+		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<rows>2</rows>
 			<growablecols>0</growablecols>
@@ -99,18 +100,9 @@
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
-						<object class="wxButton" name="ID_CLEARIO_BUTTON" variable="ClearButton" member="yes">
-							<label>Clear IO</label>
+						<object class="wxButton" name="ID_CLEAR_TERMINAL_BUTTON" variable="ClearButton" member="yes">
+							<label>Clear Terminal</label>
 							<handler function="OnClearButtonClick" entry="EVT_BUTTON" />
-						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxButton" name="ID_QUIT_BUTTON" variable="QuitButton" member="yes">
-							<label>Quit</label>
-							<handler function="OnQuitButtonClick" entry="EVT_BUTTON" />
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>
@@ -120,6 +112,75 @@
 				<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 				<border>5</border>
 				<option>1</option>
+			</object>
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="yes">
+			<object class="wxMenu" variable="FileMenu" member="yes">
+				<label>File</label>
+				<object class="wxMenuItem" name="ID_MENU_NEW" variable="MenuNew" member="yes">
+					<label>New</label>
+					<bitmap stock_id="wxART_NORMAL_FILE" stock_client="wxART_MENU" />
+					<handler function="OnMenuNewSelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_OPEN" variable="MenuOpen" member="yes">
+					<label>Open...</label>
+					<bitmap stock_id="wxART_FILE_OPEN" stock_client="wxART_MENU" />
+					<handler function="OnMenuOpenSelected" entry="EVT_MENU" />
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="ID_MENU_SAVE" variable="MenuSave" member="yes">
+					<label>Save</label>
+					<bitmap stock_id="wxART_FILE_SAVE" stock_client="wxART_MENU" />
+					<handler function="OnMenuSaveSelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuSaveAs" member="yes">
+					<label>Save As...</label>
+					<bitmap stock_id="wxART_FILE_SAVE_AS" stock_client="wxART_MENU" />
+					<handler function="OnMenuSaveAsSelected" entry="EVT_MENU" />
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="ID_MENU_QUIT" variable="MenuQuit" member="yes">
+					<label>Quit</label>
+					<bitmap stock_id="wxART_QUIT" stock_client="wxART_MENU" />
+					<handler function="OnQuitButtonClick" entry="EVT_MENU" />
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="yes">
+				<label>Edit</label>
+				<object class="wxMenuItem" name="ID_MENU_UNDO" variable="MenuUndo" member="yes">
+					<label>Undo</label>
+					<bitmap stock_id="wxART_UNDO" stock_client="wxART_MENU" />
+					<handler function="OnMenuUndoSelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_REDO" variable="MenuRedo" member="no">
+					<label>Redo</label>
+					<bitmap stock_id="wxART_REDO" stock_client="wxART_MENU" />
+					<handler function="OnMenuRedoSelected" entry="EVT_MENU" />
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="ID_MENU_COPY" variable="MenuCopy" member="yes">
+					<label>Copy</label>
+					<bitmap stock_id="wxART_COPY" stock_client="wxART_MENU" />
+					<handler function="OnMenuCopySelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_CUT" variable="MenuCut" member="yes">
+					<label>Cut</label>
+					<bitmap stock_id="wxART_CUT" stock_client="wxART_MENU" />
+					<handler function="OnMenuCutSelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_PASTE" variable="MenuPaste" member="yes">
+					<label>Paste</label>
+					<bitmap stock_id="wxART_PASTE" stock_client="wxART_MENU" />
+					<handler function="OnMenuPasteSelected" entry="EVT_MENU" />
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu3" member="yes">
+				<label>Help</label>
+				<object class="wxMenuItem" name="ID_MENU_ABOUT" variable="MenuAbout" member="yes">
+					<label>About</label>
+					<bitmap stock_id="wxART_INFORMATION" stock_client="wxART_MENU" />
+					<handler function="OnMenuAboutSelected" entry="EVT_MENU" />
+				</object>
 			</object>
 		</object>
 	</object>

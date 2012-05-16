@@ -32,6 +32,7 @@ private:
     void update_ptr();
     void update_gui();
     bf_table * parent;
+    wxCSConv conv;
     bool bounds_check(int i);
 };
 

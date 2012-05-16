@@ -14,7 +14,7 @@ class bf_interpreter_thread;
 
 class IDEFrame;
 
-enum runmode_type {stopped,running,paused,stepped,continued};
+enum runmode_type {stopped,running,stepped,continued};
 
 typedef struct {
     const wxChar* location;
@@ -35,6 +35,7 @@ class bf_interpreter_thread : public wxThread
     wxMutex* mutex;
     wxCondition* unpaused_condition;
     runmode_type runmode;
+    bool skip_comments();
     void skip_to_corresponding_brace();
     bf_vm * vm;
     wxString program;

@@ -40,7 +40,6 @@
 		<Unit filename="IDEFrame.h" />
 		<Unit filename="bf_ideApp.cpp" />
 		<Unit filename="bf_ideApp.h" />
-		<Unit filename="bf_interpreter.cpp" />
 		<Unit filename="bf_interpreter_thread.cpp" />
 		<Unit filename="bf_interpreter_thread.h" />
 		<Unit filename="bf_table.cpp" />
