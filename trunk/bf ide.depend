@@ -3422,14 +3422,18 @@
 	<wx/thread.h>
 	<queue>
 
-1337131481 source:/home/jeremy/wx/wxbfide/IDEFrame.cpp
+1337136792 source:/home/jeremy/wx/wxbfide/IDEFrame.cpp
 	"IDEFrame.h"
 	<wx/string.h>
 	<wx/intl.h>
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/artprov.h>
 	"bf_tableBase.h"
 	<wx/msgdlg.h>
+	<wx/aboutdlg.h>
 
-1337133179 /home/jeremy/wx/wxbfide/IDEFrame.h
+1337134031 /home/jeremy/wx/wxbfide/IDEFrame.h
 	<wx/grid.h>
 	<wx/checkbox.h>
 	<wx/sizer.h>
@@ -3506,4 +3510,15 @@
 	<wx/dataobj.h>
 
 1337032025 /home/jeremy/wx/wxbfide/vmEventHander.h
+
+1302595075 /usr/include/wx-2.9/wx/artprov.h
+	"wx/string.h"
+	"wx/bitmap.h"
+	"wx/icon.h"
+	"wx/iconbndl.h"
+
+1302595076 /usr/include/wx-2.9/wx/aboutdlg.h
+	"wx/defs.h"
+	"wx/app.h"
+	"wx/icon.h"
 

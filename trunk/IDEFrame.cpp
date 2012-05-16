@@ -69,6 +69,7 @@ IDEFrame::IDEFrame(wxWindow* parent,wxWindowID id): c(m),
     wxMenuItem* MenuRedo;
 
     Create(parent, wxID_ANY, _("Brainfuck IDE - New File"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    SetClientSize(wxSize(-1,-1));
     FlexGridSizer1 = new wxFlexGridSizer(2, 0, 0, 0);
     FlexGridSizer1->AddGrowableCol(0);
     FlexGridSizer1->AddGrowableRow(0);
@@ -152,7 +153,6 @@ IDEFrame::IDEFrame(wxWindow* parent,wxWindowID id): c(m),
     Menu3->Append(MenuAbout);
     MenuBar1->Append(Menu3, _("Help"));
     SetMenuBar(MenuBar1);
-    FlexGridSizer1->Fit(this);
     FlexGridSizer1->SetSizeHints(this);
 
     Connect(ID_RUN_BUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&IDEFrame::OnRunButtonClick);
