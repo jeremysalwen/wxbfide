@@ -48,8 +48,6 @@
 		<Unit filename="bf_tableBase.h" />
 		<Unit filename="bf_vm.h" />
 		<Unit filename="breakpoint_lister.h" />
-		<Unit filename="terminalWx/GTerm/TextManager.cpp" />
-		<Unit filename="terminalWx/GTerm/TextManager.h" />
 		<Unit filename="terminalWx/GTerm/actions.cpp" />
 		<Unit filename="terminalWx/GTerm/gterm.cpp" />
 		<Unit filename="terminalWx/GTerm/gterm.hpp" />

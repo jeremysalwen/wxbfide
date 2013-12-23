@@ -2,31 +2,10 @@
     taTelnet - A cross-platform telnet program.
     Copyright (c) 2000 Derry Bryson
                   2004 Mark Erikson
-                  2012 Jeremy Salwen
+                  2012-2013 Jeremy Salwen
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+License: wxWindows License Version 3.1 (See the file license3.txt)
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-    Contact Information:
-
-       Technology Associates, Inc.
-       Attn:  Derry Bryson
-       959 W. 5th Street
-       Reno, NV  89503
-       USA
-
-       derry@techass.com
 */
 
 
@@ -72,8 +51,7 @@ class wxTerm : public wxWindow, public GTerm
     m_curState,
     m_curBlinkRate;
 
-  int m_scrollBarWidth;
-  int m_charsInLine;
+      int m_charsInLine;
   int m_linesDisplayed;
 
   unsigned char
@@ -84,7 +62,6 @@ class wxTerm : public wxWindow, public GTerm
     m_marking;
 
   bool m_inUpdateSize;
-  bool m_isActive;
 
   wxColour
     m_vt_colors[16],
@@ -216,7 +193,6 @@ private:
   void OnLeftUp(wxMouseEvent& event);
   void OnMouseMove(wxMouseEvent& event);
   void OnTimer(wxTimerEvent& event);
-  void OnActivate(wxActivateEvent &event);
   void OnSize(wxSizeEvent &event);
 
   void OnGainFocus(wxFocusEvent &event);

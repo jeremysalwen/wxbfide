@@ -2,31 +2,10 @@
     taTelnet - A cross-platform telnet program.
     Copyright (c) 2000 Derry Bryson
                   2004 Mark Erikson
-                  2012 Jeremy Salwen
+                  2012-2013 Jeremy Salwen
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+License: wxWindows License Version 3.1 (See the file license3.txt)
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-    Contact Information:
-
-       Technology Associates, Inc.
-       Attn:  Derry Bryson
-       959 W. 5th Street
-       Reno, NV  89503
-       USA
-
-       derry@techass.com
 */
 
 #ifdef __GNUG__
@@ -401,9 +380,6 @@ wxTerm::wxTerm(wxWindow* parent, wxWindowID id,
     i;
 
   m_inUpdateSize = false;
-  m_isActive = false;
-  m_scrollBarWidth = wxSystemSettings::GetMetric(wxSYS_VSCROLL_ARROW_X);
-
   m_init = 1;
 
   m_curDC = 0;
@@ -822,14 +798,6 @@ wxTerm::OnChar(wxKeyEvent& event)
     event.Skip();
   else
   {
-	  // if the user is scrolled up and they typed something, scroll
-	  // all the way to the bottom
-	  if(GTerm::IsScrolledUp())
-	  {
-		  GTerm::Scroll(MAXHEIGHT, false);
-		  GTerm::Update();
-		  Refresh();
-	  }
 
     int
       rc,
@@ -971,13 +939,13 @@ void
 wxTerm::OnLeftDown(wxMouseEvent& event)
 {
 	SetFocus();
-/*
+
   ClearSelection();
   m_selx1 = m_selx2 = event.GetX() / m_charWidth;
   m_sely1 = m_sely2 = event.GetY() / m_charHeight;
   m_selecting = TRUE;
   CaptureMouse();
-*/
+
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -993,13 +961,12 @@ wxTerm::OnLeftDown(wxMouseEvent& event)
 void
 wxTerm::OnLeftUp(wxMouseEvent& event)
 {
-/*
+
   m_selecting = FALSE;
   if(GetCapture() == this)
   {
 	ReleaseMouse();
   }
-*/
 
 }
 
@@ -1319,7 +1286,10 @@ wxTerm::DrawText(int fg_color, int bg_color, int flags,
   m_curDC->SetTextForeground(m_colors[fg_color]);
   m_curDC->DrawText(str, x, y);
   if(flags & BOLD && m_boldStyle == OVERSTRIKE)
+  {
+    m_curDC->SetBackgroundMode(wxTRANSPARENT);
     m_curDC->DrawText(str, x + 1, y);
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1341,10 +1311,6 @@ void
 wxTerm::DoDrawCursor(int fg_color, int bg_color, int flags,
                    int x, int y, unsigned char c)
 {
-	if(GTerm::IsScrolledUp())
-	{
-		return;
-	}
 
   if(flags & BOLD && m_boldStyle == COLOR)
     fg_color = (fg_color % 8) + 8;
@@ -1541,8 +1507,8 @@ wxTerm::MoveChars(int sx, int sy, int dx, int dy, int w, int h)
 void
 wxTerm::ClearChars(int bg_color, int x, int y, int w, int h)
 {
-//  if(!m_marking)
-//    ClearSelection();
+  if(!m_marking)
+    ClearSelection();
 
   x = x * m_charWidth;
   y = y * m_charHeight;
@@ -1903,20 +1869,6 @@ wxTerm::PrintChars(int len, unsigned char *data)
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////
-///  private OnActivate
-///  Sets the terminal's active state - determines whether or not to draw the cursor
-///
-///  @param  event wxActivateEvent & The generated activate event
-///
-///  @return void
-///
-///  @author Mark Erikson @date 04-22-2004
-//////////////////////////////////////////////////////////////////////////////
-void wxTerm::OnActivate(wxActivateEvent &event)
-{
-	m_isActive = event.GetActive();
-}
 
 //////////////////////////////////////////////////////////////////////////////
 ///  private OnGainFocus
@@ -1950,24 +1902,6 @@ void wxTerm::OnLoseFocus(wxFocusEvent &event)
 	this->set_mode_flag(CURSORINVISIBLE);
 	wxLogDebug("TerminalWx Lost focus");
 	GTerm::Update();
-}
-
-//////////////////////////////////////////////////////////////////////////////
-///  public ScrollTerminal
-///  Scrolls the terminal text
-///
-///  @param  numLines int   The number of lines to scroll
-///  @param  scrollUp bool  [=true] True to scroll up, false to scroll down
-///
-///  @return void
-///
-///  @author Mark Erikson @date 04-22-2004
-//////////////////////////////////////////////////////////////////////////////
-void wxTerm::ScrollTerminal(int numLines, bool scrollUp /* = true */)
-{
-	GTerm::Scroll(numLines, scrollUp);
-	Refresh();
-
 }
 
 //////////////////////////////////////////////////////////////////////////////

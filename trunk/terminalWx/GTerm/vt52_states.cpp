@@ -1,31 +1,18 @@
 /*
 TerminalWx - A wxWidgets terminal widget
-Copyright (C) 1999,2004  Timothy Miller
+Copyright (C) 1999  Timothy Miller
               2004  Mark Erikson
-              2012  Jeremy Salwen
+              2012-2013 Jeremy Salwen
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+License: wxWindows License Version 3.1 (See the file license3.txt)
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 /* GRG: Added a lot of GTerm:: prefixes to correctly form pointers
  *   to functions in all the tables. Example: &cr -> &GTerm::cr
  */
 
-
 #include "gterm.hpp"
-
 
 // I'm certain that this set is incomplete, but I got these from reverse-
 // engineering a VT100 verification test program.
